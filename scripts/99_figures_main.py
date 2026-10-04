@@ -19,15 +19,39 @@ import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
 
-sys.path.insert(0, str(Path(__file__).parent))
-from fig_style import (AQUA, BLUE, C_CROSS, C_IR, C_OIS, C_REP, FULL, GREY,
-                       GRID, INK, INK2, MAGENTA, MOTIF_COLOUR, MOTIF_LABEL,
-                       MOTIF_MARKER, MUTED, ORANGE, RED, SHADE, SINGLE, VIOLET,
-                       YELLOW, apply_style, panel_tag, save)
+import importlib.util as _ilu, pathlib as _pl
+_fspec = _ilu.spec_from_file_location('_fs', _pl.Path(__file__).resolve().parent/'98_fig_style.py')
+_fs = _ilu.module_from_spec(_fspec); _fspec.loader.exec_module(_fs)
+AQUA = _fs.AQUA
+BLUE = _fs.BLUE
+C_CROSS = _fs.C_CROSS
+C_IR = _fs.C_IR
+C_OIS = _fs.C_OIS
+C_REP = _fs.C_REP
+FULL = _fs.FULL
+GREY = _fs.GREY
+GRID = _fs.GRID
+INK = _fs.INK
+INK2 = _fs.INK2
+MAGENTA = _fs.MAGENTA
+MOTIF_COLOUR = _fs.MOTIF_COLOUR
+MOTIF_LABEL = _fs.MOTIF_LABEL
+MOTIF_MARKER = _fs.MOTIF_MARKER
+MUTED = _fs.MUTED
+ORANGE = _fs.ORANGE
+RED = _fs.RED
+SHADE = _fs.SHADE
+SINGLE = _fs.SINGLE
+VIOLET = _fs.VIOLET
+YELLOW = _fs.YELLOW
+apply_style = _fs.apply_style
+panel_tag = _fs.panel_tag
+save = _fs.save
 
-ROOT = Path("/Users/gabeykim/Downloads/Senescence")
-OUTD = ROOT / "output"
-HERE = Path(__file__).parent
+_spec = _ilu.spec_from_file_location('_p', _pl.Path(__file__).resolve().parent/'00_paths.py')
+_p = _ilu.module_from_spec(_spec); _spec.loader.exec_module(_p)
+ROOT, OUTD = _p.ROOT, _p.OUTPUT
+HERE = _p.REPO / "figures"   # dataset_table.csv and figure_flags.txt live with the figures
 apply_style()
 NOTES = []
 
@@ -282,14 +306,20 @@ def fig4():
 
 # =====================================================================  FIG 5
 def fig5():
-    import anndata
     R = OUTD / "ois_enhancer_run/results"
     tr = json.load(open(R / "results_train.json"))
     pred = np.load(R / "pred_rest.npy")
     idx = np.load(R / "idx_rest.npy")
-    ad = anndata.read_h5ad(OUTD / "ois_enhancer_trainset/ois_enhancer_trainset.h5ad")
-    tasks = list(ad.obs.index)
-    meas = np.asarray(ad.X, np.float32)[tasks.index("IMR90_SEN_vs_PRO")][idx]
+    # measured IMR90 response for exactly the stored held-out index. The small
+    # extract ships with this repo; the full AnnData (Zenodo) is the fallback so
+    # the script still runs unchanged inside the original working tree.
+    _m = _p.REPO / "results/ois_model/measured_IMR90_SEN_vs_PRO_rest.npy"
+    if _m.exists():
+        meas = np.load(_m)
+    else:
+        ad = anndata.read_h5ad(OUTD / "ois_enhancer_trainset/ois_enhancer_trainset.h5ad")
+        tasks = list(ad.obs.index)
+        meas = np.asarray(ad.X, np.float32)[tasks.index("IMR90_SEN_vs_PRO")][idx]
 
     er = tr["eval_rest"]["IMR90_SEN_vs_PRO"]
     CEIL = tr["reproducibility_ceiling"]

@@ -1,6 +1,6 @@
 {
   "question": "Does the best motif COMBINATION beat the best SINGLE motif at matched total insertion load (K=12 copies)?",
-  "source_file": "/Users/gabeykim/Downloads/Senescence/output/ois_gates/results/gate1_additivity_raw.csv",
+  "source_file": "results/design_gates/gate1_additivity_raw.csv",
   "pair_condition": {
     "label": "NFKB_RELA+ETS1",
     "K_total": 12,

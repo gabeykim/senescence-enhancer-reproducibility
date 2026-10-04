@@ -47,8 +47,8 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-RAW = Path("/Users/gabeykim/Downloads/Senescence/output/ois_gates/results/gate1_additivity_raw.csv")
-OUT = Path("/Users/gabeykim/Downloads/Senescence/output/audit_fixes")
+RAW = Path(__file__).resolve().parents[1] / "results/design_gates/gate1_additivity_raw.csv"
+OUT = Path(__file__).resolve().parents[1] / "audit_fixes"
 REQUIRED_DELTA = 0.8612759113311768      # median -> p95, results_probe.json
 
 PAIR = ("NFKB_RELA+ETS1", 12, "clustered")
@@ -95,7 +95,7 @@ def main():
     res = dict(
         question="Does the best motif COMBINATION beat the best SINGLE motif at matched "
                  "total insertion load (K=12 copies)?",
-        source_file=str(RAW),
+        source_file=str(RAW.relative_to(Path(__file__).resolve().parents[1])),
         pair_condition=dict(label=PAIR[0], K_total=PAIR[1], arrangement=PAIR[2]),
         single_condition=dict(label=SINGLE[0], K_total=SINGLE[1], arrangement=SINGLE[2]),
         matched_load="both arms place 12 motif copies on the identical slot grid",

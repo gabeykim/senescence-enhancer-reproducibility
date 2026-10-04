@@ -31,7 +31,7 @@ MM = 1.0 / 25.4
 FULL = 180 * MM          # 7.087 in
 SINGLE = 85 * MM         # 3.346 in
 
-OUT = Path("/Users/gabeykim/Downloads/Senescence/output/figures_manuscript")
+OUT = Path(__file__).resolve().parents[1] / "figures"
 
 # categorical slots, fixed order, never cycled
 BLUE, ORANGE, AQUA, YELLOW, MAGENTA, VIOLET = (

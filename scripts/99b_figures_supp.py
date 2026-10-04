@@ -19,20 +19,43 @@ import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
 
-sys.path.insert(0, str(Path(__file__).parent))
-from fig_style import (AQUA, BLUE, FULL, GREY, INK, INK2, MOTIF_COLOUR,
-                       MOTIF_LABEL, MOTIF_MARKER, MUTED, ORANGE, RED, SHADE,
-                       SINGLE, VIOLET, YELLOW, apply_style, panel_tag, save)
+import importlib.util as _ilu, pathlib as _pl
+_fspec = _ilu.spec_from_file_location('_fs', _pl.Path(__file__).resolve().parent/'98_fig_style.py')
+_fs = _ilu.module_from_spec(_fspec); _fspec.loader.exec_module(_fs)
+AQUA = _fs.AQUA
+BLUE = _fs.BLUE
+FULL = _fs.FULL
+GREY = _fs.GREY
+INK = _fs.INK
+INK2 = _fs.INK2
+MOTIF_COLOUR = _fs.MOTIF_COLOUR
+MOTIF_LABEL = _fs.MOTIF_LABEL
+MOTIF_MARKER = _fs.MOTIF_MARKER
+MUTED = _fs.MUTED
+ORANGE = _fs.ORANGE
+RED = _fs.RED
+SHADE = _fs.SHADE
+SINGLE = _fs.SINGLE
+VIOLET = _fs.VIOLET
+YELLOW = _fs.YELLOW
+apply_style = _fs.apply_style
+panel_tag = _fs.panel_tag
+save = _fs.save
 
-ROOT = Path("/Users/gabeykim/Downloads/Senescence")
-OUTD = ROOT / "output"
+_spec = _ilu.spec_from_file_location('_p', _pl.Path(__file__).resolve().parent/'00_paths.py')
+_p = _ilu.module_from_spec(_spec); _spec.loader.exec_module(_p)
+ROOT, OUTD = _p.ROOT, _p.OUTPUT
 apply_style()
 
 
 # =====================================================================  S1
 def s1():
     st = json.load(open(OUTD / "enhancer_test/step2_stats.json"))["active_vs_open"]["0.5"]
-    r = pd.read_csv(OUTD / "enhancer_test/region_responses.csv")
+    # two-column extract of region_responses.csv (the only columns S1 needs);
+    # falls back to the full table when running in the original tree.
+    _e = _p.REPO / "results/enhancer_cross_mechanism/gm21_atac_vs_k27ac.csv"
+    r = pd.read_csv(_e) if _e.exists() else pd.read_csv(
+        OUTD / "enhancer_test/region_responses.csv")
     both = r[["gm21_atac", "gm21_k27ac"]].dropna()
     T = 0.5
     nd, nc, ns = st["n_diff_atac"], st["n_also_diff_k27ac"], st["n_same_direction"]
