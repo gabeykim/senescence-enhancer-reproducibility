@@ -9,7 +9,8 @@ type: software
 authors:
   - given-names: Gabriel
     family-names: Kim
-    affiliation: Independent researcher
+    affiliation: Stanford University
+    email: gabeykim@stanford.edu
 repository-code: >-
   https://github.com/gabeykim/senescence-enhancer-reproducibility
 abstract: >-
@@ -64,7 +65,7 @@ preferred-citation:
   authors:
     - given-names: Gabriel
       family-names: Kim
-      affiliation: Independent researcher
+      affiliation: Stanford University
   year: 2026
   doi: 10.0000/preprint.pending
   url: https://example.org/preprint-link-pending

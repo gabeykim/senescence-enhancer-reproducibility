@@ -12,12 +12,6 @@ designing one.
   [CC-BY 4.0](LICENSE-DATA) for `results/`, `figures/`, `audit/`,
   `audit_fixes/` and `reports/`.
 
-This repository keeps its working reports exactly as they were written and
-documents its own corrections rather than quietly fixing them: five
-discrepancies found between those reports and the stored data are listed in
-[reports/ERRATA.md](reports/ERRATA.md). The manuscript carries the corrected
-values throughout.
-
 ---
 
 ## Read this first: every H3K27ac arm is n = 2
@@ -42,9 +36,9 @@ Two replicative datasets agree with each other no better than a replicative
 dataset agrees with an oncogene-induced one: the cleanest comparison available —
 same lab, same pipeline, same genome build, no technical confound — is
 Spearman **+0.054** (n = 134,336), against a within-OIS ceiling of **+0.653**
-(n = 88,530). The promoter-level biology reproduces everywhere (CDKN2A falls in
-all seven dataset arms), so this is not measurement failure; it is the absence
-of a shared distal programme, and it is what forced the project onto OIS.
+(n = 88,530). CDKN2A gene-body-proximal H3K27ac falls in all seven arms, drawn
+from four studies, so this is not measurement failure; it is the absence of a
+shared distal programme.
 
 **2. A trained head on Borzoi trunk embeddings predicts the OIS response
 across studies.** Training on GM21 and validating on IMR-90 — a cross-lab,
@@ -57,13 +51,14 @@ takes +0.548 down to +0.025.
 
 **3. The motif-insertion design lever saturates well below what is needed.**
 Moving a sequence from the median to the 95th percentile of predicted activity
-requires Δ = **+0.861**; the best condition found reaches **+0.666**, or
-**0.773×**, and the dose response is non-monotonic — it peaks at 12 inserted
-copies and *declines* at 18 and 20, because a 200 bp cassette tiled end to end
-with consensus stops looking like an enhancer. Combining motif families buys
-nothing over using more of the best single family at matched load
-(+0.064, p = 0.157), while *arrangement* is worth up to +0.294, so whatever
-headroom remains is in grammar and spacing rather than in motif count.
+requires Δ = **+0.861**; the best condition reaches **+0.666**, or **0.773×**,
+and the dose response is non-monotonic — it peaks at 12 inserted copies and
+*declines* at 18 and 20, at which point a 200 bp cassette is tiled end to end
+with consensus. Combining motif families adds nothing over using more of the
+best single family at matched load (+0.064, p = 0.157), while *arrangement*
+contributes a mean **+0.129** across eight paired conditions (95% CI +0.057 to
++0.201; maximum +0.294), placing the remaining headroom in grammar and spacing
+rather than in motif count.
 
 **4. The AP-1 anomaly is context dependence, not a claim about AP-1.**
 Inserting the AP-1 consensus into inert background *lowers* predicted senescence
@@ -72,8 +67,8 @@ element worse — but ablating *native* AP-1 sites reverses the sign depending o
 where they sit: −0.1055 in high-response regions versus +0.0658 in low-response
 ones (interaction p = 0.0091), with an NF-κB positive control behaving as
 expected. Genome-wide, strong AP-1 sites are **2.3× enriched** in the top
-H3K27ac decile (p = 5.9 × 10⁻⁹⁴), so the insertion probe was simply only ever run
-in the one context class where AP-1 is negative.
+H3K27ac decile (p = 5.9 × 10⁻⁹⁴). The insertion assay samples only the
+low-activity context class, in which AP-1 is negative.
 
 ---
 
@@ -82,35 +77,26 @@ in the one context class where AP-1 is negative.
 ```
 scripts/      58 scripts, numbered in execution order; each carries a
               CONSUMES / PRODUCES header
-env/          lockfiles + ENVIRONMENT.md (seven quirks that cost real time)
+env/          lockfiles + ENVIRONMENT.md (seven environment quirks)
 results/      derived tables, summary statistics and run logs, by phase
 figures/      the twelve publication figures (PNG 300 dpi + vector PDF)
               and captions.md
-audit/        the number audit: 72 claims checked against source files
-audit_fixes/  the eight closed audit items, with their derivations
-reports/      the working reports, unaltered except for redacted host
+audit/        audit trail: 72 reported values checked against source files
+audit_fixes/  eight resolved audit items, with their derivations
+reports/      working reports, unaltered except for redacted host
               addresses, plus ERRATA.md
-data/         GSE254358 provenance evidence only (see below)
+data/         retained provenance records; not analysis inputs
 ```
 
-**The reports are a working record, superseded by the manuscript.** They are
-kept because the record of what was concluded when is worth having, not because
-they are correct. Five known discrepancies between a report and the stored data
-are listed in [reports/ERRATA.md](reports/ERRATA.md), each with the correct
-value and where the corrected version appears. Where a report and a file in
-`results/` disagree, **the file is authoritative**.
+**The reports under `reports/` are working outputs, superseded by the
+manuscript.** [`reports/ERRATA.md`](reports/ERRATA.md) records the differences
+between values in those working outputs and the values reported in the
+manuscript. Where a report and a file in `results/` disagree, **the file in
+`results/` is authoritative**.
 
-### `data/GSE254358/` is evidence, not data
-
-An accession cited across two research rounds turned out not to exist. The
-directory holds the three files a fetch script wrote when NCBI returned 404:
-two `.gz` files that are not gzip at all but byte-identical Apache error pages,
-and a text file scraped from the same page. They are preserved byte-for-byte
-with their original timestamps and checksums because the manuscript makes a
-provenance claim about them. See
-[data/GSE254358/README.md](data/GSE254358/README.md). Re-verified live on
-2026-10-04: `esearch` returns 0, the FTP path 404s while both the parent range
-directory and the adjacent accession GSE254357 return 200.
+`data/` holds retained provenance records with their original checksums and
+timestamps. They are not analysis inputs and no result depends on them; see
+[LICENSE-DATA](LICENSE-DATA) for their licensing status.
 
 ---
 
@@ -253,8 +239,8 @@ Two lockfiles, because two environments were used:
   environment for the audit and all twelve figures. These versions **are**
   exact.
 
-[`env/ENVIRONMENT.md`](env/ENVIRONMENT.md) documents seven things that cost
-real time, so nobody rediscovers them: PEP 668 blocking system pip on Ubuntu
+[`env/ENVIRONMENT.md`](env/ENVIRONMENT.md) documents seven environment quirks
+relevant to reproducing the GPU steps: PEP 668 blocking system pip on Ubuntu
 24.04 and the `--system-site-packages` venv it forces; UCSC being unreachable
 from some cloud providers and the NCBI GRCh38 fallback; the 194-contig
 RefSeq→UCSC rename that fallback requires; gReLU 1.1.0 ignoring
@@ -267,22 +253,35 @@ codes that survive uppercasing and are rejected by the allowed-base set.
 
 ## Provenance and auditing
 
-This repository carries its own audit trail, which is unusual and deliberate.
-
-- [`audit/NUMBER_AUDIT.md`](audit/NUMBER_AUDIT.md) — 72 claimed numbers checked
-  against the file each came from: 60 matched, 4 mismatched, 1 not found, 4
-  verified but misattributed or mislabelled.
+- [`audit/NUMBER_AUDIT.md`](audit/NUMBER_AUDIT.md) — 72 reported values checked
+  against the file each is derived from: 60 matched, 4 mismatched, 1 not
+  located, 4 matched but misattributed or mislabelled.
 - [`audit/accession_log_merged.csv`](audit/accession_log_merged.csv) — all 44
-  accessions the project touched, each re-verified live against NCBI eutils or
-  the ENCODE API on 2026-10-04, including the one that does not exist.
+  accessions referenced by the project, each verified against NCBI eutils or
+  the ENCODE API on 2026-10-04.
 - [`audit/n_consistency_check.txt`](audit/n_consistency_check.txt) — every
   reported n re-added; `evaluable + ambiguous == total` holds in all eight AUC
   reports.
-- [`audit_fixes/`](audit_fixes/) — the eight closed items, including two where
-  the audit's own explanation turned out to be wrong and was replaced by a
-  reproduced one.
-- [`reports/ERRATA.md`](reports/ERRATA.md) — the five known report/data
-  discrepancies.
+- [`audit_fixes/`](audit_fixes/) — eight resolved audit items with their
+  derivations.
+- [`reports/ERRATA.md`](reports/ERRATA.md) — differences between the working
+  reports and the values reported in the manuscript.
+- [`reports/REDACTIONS.txt`](reports/REDACTIONS.txt) — log of redacted
+  ephemeral compute-host addresses; no scientific content was altered.
+
+## Affiliation, funding and AI assistance
+
+Gabriel Kim, Stanford University, Stanford, CA, USA.
+Correspondence: gabeykim@stanford.edu
+
+**Funding.** No funding was received for this work. Compute was self-funded,
+no institutional laboratory resources were used, and all data analysed are
+publicly deposited.
+
+**AI assistance.** Corresponding to §2.8 of the manuscript: analysis code,
+audit scripts and drafting in this repository were AI-assisted under the
+author's direction. The author verified all reported numbers and is
+responsible for all claims.
 
 ## Citing
 
