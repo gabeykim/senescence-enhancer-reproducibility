@@ -1,0 +1,45 @@
+accession,repository,role_in_project,verification_method,date_verified,outcome,detail
+GSE205898,GEO,"PRIMARY — GM21 OIS H3K27ac ChIP-seq; the OIS trainset training source","eutils esearch db=gds [ACCN] AND gse[ETYP] + esummary",2026-10-04,LIVE,"Escape From OIS [ChIP-seq]; n=30; PRJNA848201"
+GSE74238,GEO,"PRIMARY — IMR90 OIS H3K27ac ChIP-seq; cross-study validation arm","eutils esearch + esummary",2026-10-04,LIVE,"BRD4 connects enhancer remodeling (ChIP-Seq); n=22; PRJNA299593"
+GSE74324,GEO,"PRIMARY — IMR90 OIS RNA-seq; expression-phase arm","eutils esearch + esummary",2026-10-04,LIVE,"BRD4 connects enhancer remodeling (RNA-seq); n=72; PRJNA299683"
+GSE205692,GEO,"PRIMARY — GM21 OIS RNA-seq; expression-phase arm","eutils esearch + esummary",2026-10-04,LIVE,"Escape From OIS; n=34; PRJNA847199"
+GSE175533,GEO,"PRIMARY — replicative senescence multi-omics (Hayflick); expression-phase arm","eutils esearch + esummary",2026-10-04,LIVE,"Revisiting the Hayflick Limit; n=147; PRJNA732700"
+GSE106146,GEO,"PRIMARY — replicative + IR H3K27ac; within-replicative ceiling (R1/R3) and IR arms","eutils esearch + esummary",2026-10-04,LIVE,"p300 induces de novo super-enhancers; n=82; PRJNA415730"
+GSE146585,GEO,"PRIMARY — functional genomics superseries (hg18); parent of the replicative-ceiling subseries","eutils esearch + esummary",2026-10-04,LIVE,"Functional genomics assays incl ChIP/ATAC/RNA/GRO-seq; n=223; PRJNA610876"
+GSE146567,GEO,"PRIMARY subseries — IMR90 replicative H3K27ac (R1/R2 arms)","eutils esearch + esummary",2026-10-04,LIVE,"Genome wide mapping of histone mark and TF; n=14; PRJNA610867"
+GSE146559,GEO,"PRIMARY subseries — BJ replicative H3K27ac (R2/R3 arms)","eutils esearch + esummary",2026-10-04,LIVE,"Genome wide mapping of histone mark and TF; n=26; PRJNA610858"
+GSE146563,GEO,"PRIMARY subseries — IMR90 OIS H3K27ac same-lab (X1 arm)","eutils esearch + esummary",2026-10-04,LIVE,"Genome wide mapping of H3K27ac in IMR90 OIS; n=2; PRJNA610856"
+GSE206402,GEO,"PRIMARY — OIS ATAC-seq","eutils esearch + esummary",2026-10-04,LIVE,"Escape From OIS [ATAC-seq]; n=25; PRJNA850441"
+GSE206493,GEO,"PRIMARY — OIS RNA-seq","eutils esearch + esummary",2026-10-04,LIVE,"Escape From OIS [RNA-seq]; n=12; PRJNA851072"
+GSE206496,GEO,"PRIMARY — OIS series","eutils esearch + esummary",2026-10-04,LIVE,"Escape From OIS; n=101; PRJNA851070"
+GSE210285,GEO,"PRIMARY — integrated multi-omics senescence","eutils esearch + esummary",2026-10-04,LIVE,"Integrated multi-omics senescence landscape; n=4; PRJNA865031"
+GSE220545,GEO,"PRIMARY — senescence-committed vs uncommitted RNA-seq","eutils esearch + esummary",2026-10-04,LIVE,"n=6; PRJNA910178"
+GSE99028,GEO,"PRIMARY — etoposide-induced senescence expression","eutils esearch + esummary",2026-10-04,LIVE,"n=6; PRJNA387040"
+GSE254358,GEO,"CITED BUT NON-EXISTENT — originally requested as the ATAC-seq arm; never used","eutils esearch (count=0); FTP series path HTTP 404 vs parent range dir HTTP 200 and sibling GSE254357 HTTP 200; esearch db=bioproject (count=0)",2026-10-04,DOES NOT EXIST,"absent from GEO entirely; not embargoed and not a path-construction error. See data/GSE254358/README.md"
+GSE146566,GEO,"SECONDARY — named in the replicative ceiling report, not quantified","eutils esearch + esummary",2026-10-04,LIVE,"Rapamycin effect on the enhancer landscape; n=12; PRJNA610868"
+GSE146568,GEO,"SECONDARY — named in the replicative ceiling report, not quantified","eutils esearch",2026-10-04,LIVE,"esearch count=1"
+GSE146582,GEO,"SECONDARY — named in the replicative ceiling report, not quantified","eutils esearch + esummary",2026-10-04,LIVE,"p65 inhibition; n=8; PRJNA610883"
+GSE105937,GEO,"SECONDARY — named in the replicative ceiling report, not quantified","eutils esearch",2026-10-04,LIVE,"esearch count=1"
+GSE74328,GEO,"SECONDARY — BRD4 superseries, named in the GSE74238/74324 section","eutils esearch + esummary",2026-10-04,LIVE,"BRD4 connects enhancer remodeling; n=94; PRJNA299780"
+GSE169767,GEO,"SECONDARY — GEO mirror of the ENCODE IMR-90 ATAC experiment","eutils esearch + esummary",2026-10-04,LIVE,"ATAC-seq from IMR-90 (ENCSR200OML); n=2; PRJNA63443"
+ENCSR200OML,ENCODE,"PRIMARY — IMR-90 ATAC-seq experiment","encodeproject.org JSON (@type + status)",2026-10-04,LIVE,"Experiment; ATAC-seq; released"
+ENCSR978WIX,ENCODE,"PRIMARY — ChromBPNet models trained on ENCSR200OML","encodeproject.org JSON",2026-10-04,LIVE,"Annotation (ChromBPNet-model); released; GRCh38"
+ENCSR169RNU,ENCODE,"SECONDARY — named in the ENCODE IMR90 section","encodeproject.org JSON",2026-10-04,LIVE,"Annotation; released"
+PRJNA732700,BioProject,"parent of GSE175533","eutils esearch db=bioproject [PRJA]",2026-10-04,LIVE,
+PRJNA299683,BioProject,"parent of GSE74324","eutils esearch db=bioproject",2026-10-04,LIVE,
+PRJNA299593,BioProject,"parent of GSE74238","eutils esearch db=bioproject",2026-10-04,LIVE,
+PRJNA850441,BioProject,"parent of GSE206402","eutils esearch db=bioproject",2026-10-04,LIVE,
+PRJNA847199,BioProject,"parent of GSE205692","eutils esearch db=bioproject",2026-10-04,LIVE,
+PRJNA865031,BioProject,"parent of GSE210285","eutils esearch db=bioproject",2026-10-04,LIVE,
+PRJNA910178,BioProject,"parent of GSE220545; checked for a linked ATAC companion — none found","eutils esearch db=bioproject",2026-10-04,LIVE,
+PRJNA851070,BioProject,"parent of GSE206496","eutils esearch db=bioproject",2026-10-04,LIVE,
+PRJNA851072,BioProject,"parent of GSE206493","eutils esearch db=bioproject",2026-10-04,LIVE,
+PRJNA848201,BioProject,"parent of GSE205898","eutils esearch db=bioproject",2026-10-04,LIVE,
+PRJNA439280,BioProject,"referenced in data/ as a fetch target","eutils esearch db=bioproject",2026-10-04,LIVE,
+PRJNA387040,BioProject,"parent of GSE99028","eutils esearch db=bioproject",2026-10-04,LIVE,
+GSE254538,GEO,"NEAR-MISS typo of GSE254358 — checked and rejected, never used","eutils esearch [ACCN] AND gse[ETYP]",2026-10-04,LIVE (unrelated study),"real but unrelated; not ATAC/senescence/IMR90"
+GSE245358,GEO,"NEAR-MISS typo of GSE254358 — checked and rejected, never used","eutils esearch",2026-10-04,LIVE (unrelated study),"real but unrelated"
+GSE253458,GEO,"NEAR-MISS typo of GSE254358 — checked and rejected, never used","eutils esearch",2026-10-04,LIVE (unrelated study),"real but unrelated"
+GSE254385,GEO,"NEAR-MISS typo of GSE254358 — checked and rejected, never used","eutils esearch",2026-10-04,LIVE (unrelated study),"real but unrelated"
+GSE245538,GEO,"NEAR-MISS typo of GSE254358 — checked and rejected, never used","eutils esearch",2026-10-04,LIVE (unrelated study),"real but unrelated"
+GSE253548,GEO,"NEAR-MISS typo of GSE254358 — checked and rejected, never used","eutils esearch",2026-10-04,LIVE (unrelated study),"real but unrelated"

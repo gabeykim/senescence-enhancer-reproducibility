@@ -1,0 +1,62 @@
+{
+  "question": "Does the best motif COMBINATION beat the best SINGLE motif at matched total insertion load (K=12 copies)?",
+  "source_file": "/Users/gabeykim/Downloads/Senescence/output/ois_gates/results/gate1_additivity_raw.csv",
+  "pair_condition": {
+    "label": "NFKB_RELA+ETS1",
+    "K_total": 12,
+    "arrangement": "clustered"
+  },
+  "single_condition": {
+    "label": "NFKB_RELA",
+    "K_total": 12,
+    "arrangement": "single"
+  },
+  "matched_load": "both arms place 12 motif copies on the identical slot grid",
+  "pairing": "one random 200 bp background per seed, shared by every condition; deltas are within-seed",
+  "adjustment": "adjusted = delta(real) - delta(scrambled), per seed",
+  "n_seeds": 10,
+  "pair": {
+    "mean": 0.6656626969999999,
+    "sd": 0.1541056890913986,
+    "sem": 0.04873249779185837,
+    "n": 10
+  },
+  "single": {
+    "mean": 0.601793141,
+    "sd": 0.15487195311944904,
+    "sem": 0.04897481175362782,
+    "n": 10
+  },
+  "difference": {
+    "mean": 0.06386955599999997,
+    "sd": 0.13086023404308691,
+    "sem": 0.04138163947188594,
+    "n": 10
+  },
+  "difference_ci95": [
+    -0.02974221613965973,
+    0.15748132813965965
+  ],
+  "tests": {
+    "paired_t": {
+      "statistic": 1.5434273947360635,
+      "p": 0.15712236210186695,
+      "df": 9,
+      "note": "the test used in the original report"
+    },
+    "wilcoxon_signed_rank": {
+      "statistic": 14.0,
+      "p": 0.193359375,
+      "note": "non-parametric alternative"
+    },
+    "exact_sign_test": {
+      "n_positive": 7,
+      "n": 10,
+      "p": 0.34375
+    }
+  },
+  "seeds_favouring_pair": 7,
+  "required_delta": 0.8612759113311768,
+  "pair_frac_of_required": 0.7728797337094455,
+  "single_frac_of_required": 0.698722828634411
+}

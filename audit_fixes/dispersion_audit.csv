@@ -1,0 +1,21 @@
+file,loc,stated_label,actual,stated_value,correct_value,n,fix_needed,note
+output/ois_gates/REPORT_ois_gates.md,line 86 (§1.3),'± 0.0414' (unlabelled),SEM over 10 background seeds,0.0414,SEM 0.0414; SD 0.1309,10 seeds,YES,the only mislabelled dispersion found in any report
+output/ois_gates/REPORT_ois_gates.md,line 65 (Gate 1 table),'±SEM' (explicit),SEM,(column),as stated,10 seeds,NO,"adjusted Δ by condition, K=12"
+output/ois_gates/REPORT_ois_gates.md,line 175 (H1b table),'±SEM' (explicit),SEM,(column),as stated,10 seeds,NO,motif-specific ablation effect
+output/ois_gates/REPORT_ois_gates.md,line 194 (H1c table),'±SEM' (explicit),SEM,(column),as stated,10 seeds,NO,AP-1 across neutral contexts
+output/ois_gates/REPORT_ois_gates.md,line 213 (H2 table),'±SEM' (explicit),SEM,(column),as stated,10 seeds,NO,AP-1 variant panel
+output/ois_gates/figures/fig1_gate1_additivity.png,error bars,(none — bars are unlabelled),SEM,n/a,caption must say 'error bars = SEM',10 seeds,YES,xerr = adjusted_sem
+output/ois_gates/figures/fig2_gate1b_dose_ceiling.png,error bars,(none — bars are unlabelled),SEM,n/a,caption must say 'error bars = SEM',10 seeds,YES,yerr = adjusted_sem
+output/ois_gates/figures/fig3_h1b_ablation.png,error bars,(none — bars are unlabelled),SEM,n/a,caption must say 'error bars = SEM',24 regions/stratum,YES,yerr = SEM of the per-region specific effect
+output/ois_gates/figures/fig4_h1c_h2.png,error bars,(none — bars are unlabelled),SEM,n/a,caption must say 'error bars = SEM',10 seeds,YES,xerr/yerr = sem columns
+output/ois_gates/figures/fig5_h3_atac_vs_k27ac.png,no error bars,n/a,n/a,n/a,n/a,"111,671 regions",NO,point estimates over the full region set
+output/ois_enhancer_run/REPORT_ois_enhancer_run.md,lines 158-161,'Shuffled mean ± sd',SD of the 200-permutation null,−0.0445 ± 0.0607 (Spearman); 0.4673 ± 0.0428 (AUC),as stated,200 permutations,NO,"source fields control1_shuffled_labels.{spearman,auc}.sd"
+output/ois_enhancer_run/REPORT_ois_enhancer_run.md,line 271,"'1.995 ± 0.908, n = 18' (± unlabelled)",SD across 18 regions (field enrichment_sd),0.908,SD 0.908; SEM would be 0.214,18 regions,CLARIFY,value correct; label the ± explicitly as SD
+infra_borzoi_grelu/REPORT.md,"lines 43, 1012",'mean ± sd (20 permutations)',SD (field control1_shuffled_labels.std),0.5605 ± 0.0940,as stated,20 permutations,NO,
+infra_borzoi_grelu/REPORT.md,lines 1077-1079,'± ' in a table with an n column,SD (fields specificity_probe_quiescent.*.std),+0.022±0.146 / +0.244±0.059 / +0.080±0.022,as stated,15 / 9 / 9 samples,CLARIFY,n present; label the ± as SD
+infra_borzoi_grelu/execution_results_generation_probe/REPORT_generation_probe.md,lines 43-52,'shuffled mean ± sd',SD of the 20-permutation null,(table),as stated,20 permutations,NO,
+infra_borzoi_grelu/execution_results_generation_probe/REPORT_generation_probe.md,line 160,'2.151 ± 1.501',SD (field ism.motif_enrichment_sd),1.501,SD 1.501,2 regions,CLARIFY,n=2; report already flags it NOT SUPPORTED — do not quote without that caveat
+infra_borzoi_grelu/execution_results_permutations/REPORT_permutations.md,lines 54-61,'shuffled mean ± sd',SD of the 200-permutation null,(table),as stated,200 permutations,NO,
+(all gate CSVs),columns *_sem / sem,field name ends in _sem,SEM,(columns),as stated,see n_seeds column,NO,"gate1_additivity_summary, gate1b_dose_curve, gate1_spacing, gate1_additivity_vs_expected, gate2_h1c_contexts, gate2_h2_variants"
+claim inventory (manuscript draft),"Group F, F2",'sd 0.0487',SEM (field adjusted_sem),0.0487,SEM 0.0487; SD 0.1541,10 seeds,YES,headline Gate 1 value
+claim inventory (manuscript draft),"Group F, F4",'sd 0.0414',SEM,0.0414,SEM 0.0414; SD 0.1309,10 seeds,YES,pair-vs-single contrast

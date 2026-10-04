@@ -1,0 +1,73 @@
+group,id,claimed_value,source_file,stored_value,verdict,note
+A,A1,"R2 = +0.054, n = 134,336","output/replicative_ceiling_test/replicative_correlations.csv (R2, thr 0.5)",0.05361793271687495; n=134336,MATCH,
+A,A2,"R1 = +0.144, n = 144,754","output/replicative_ceiling_test/replicative_correlations.csv (R1, thr 0.5)",0.14393701486681684; n=144754,MATCH,
+A,A3,"R3 = +0.268, n = 124,962","output/replicative_ceiling_test/replicative_correlations.csv (R3, thr 0.5)",0.268230379137125; n=124962,MATCH,
+A,A4,"Within-OIS ceiling +0.653, n = 88,530","output/enhancer_test/cross_mechanism_correlations.csv (b, thr 0.5)",0.6527365495816069; n=88530,MATCH,
+A,A5,Cross-mechanism range -0.164 to +0.164,"output/replicative_ceiling_test/replicative_correlations.csv (X1-X4, thr 0.5)",min X3 -0.1640636031375235; max X4 +0.1638694927961774,MATCH,
+A,A6,R1 threshold sensitivity +0.063 to +0.327,"same (R1, thr 0.0 / 1.0)",0.06329813662889718 / 0.3267534819931631,MATCH,
+A,A7,OIS ceiling threshold sensitivity +0.640 to +0.678,"output/enhancer_test/cross_mechanism_correlations.csv (b, thr 0.0 / 1.0)",0.639847571824792 / 0.6778941781755103,MATCH,
+A,A8,X1 = +0.114,"output/replicative_ceiling_test/replicative_correlations.csv (X1, thr 0.5)",0.11423358278017126; n=123121,MATCH,
+A,A9,R2 descriptor 'same lab/pipeline/aligner/hg18 build',"same, note column","'SAME lab/pipeline/build, different cell line (upper bound)'",MISATTRIBUTED DESCRIPTOR,D2: omits 'different cell line' (IMR90 vs BJ)
+B,B1,"CDKN2A promoter replicative -0.85,-0.63,-0.43",output/replicative_ceiling_test/locus_sanity_checks.csv,-0.8482555751480071; -0.6318056309802202; -0.4306104011673332,MATCH,
+B,B2,"CDKN2A promoter OIS -1.03,-1.07",same,-1.0291839495298947; -1.0675939010597921,MATCH,D5: third OIS column (same-lab) = -0.0548 omitted
+B,B3,"CDKN2A distal replicative -0.17,+0.22,+0.31",same,-0.16624652949671184; +0.21488386363151507; +0.3113982819661036,MISMATCH,"D11: +0.2149 -> +0.215/+0.21, not +0.22"
+B,B4,"CDKN2A distal OIS +0.24,+0.49",same,+0.23961104732871571; +0.4899655221683543,MATCH,
+B,B5,Model chr9 promoter -0.594 vs measured -1.341,output/ois_enhancer_run/results/locus_checks.csv,-0.5936548057943583; -1.3411686420440674,MATCH,
+B,B6,Model chr9 distal +0.198 vs measured +0.421,same,0.19800283095123722; 0.42054158449172974,MATCH,
+C,C1,OIS vs OIS = +0.531,output/trainset_expanded/VERIFY_LOG.txt:45,+0.531,MATCH,
+C,C2,Replicative vs IMR90-OIS = +0.142,output/trainset_expanded/VERIFY_LOG.txt,+0.142,MATCH,
+C,C3,Replicative vs GM21-OIS = +0.093,output/trainset_expanded/VERIFY_LOG.txt,+0.093,MATCH,
+C,C4,"Pooled mech-specific OIS AUC 0.7843, p 0.00498, 0/200",infra_borzoi_grelu/execution_results_permutations/REPORT_permutations.md:56,0.7843; 0/200; 0.00498,MATCH,
+C,C5,"Pooled unified OIS 0.6895, 27/200, p 0.139",infra_borzoi_grelu/execution_results_permutations/REPORT_permutations.md:61,0.6895; 27/200; 0.13930,MATCH,
+C,C6,IR vs replicative independent controls = +0.115,"output/replicative_ceiling_test/replicative_correlations.csv (I3, thr 0.5)",0.11527686999154328,MATCH,
+C,C7,IR vs OIS = +0.084,"output/replicative_ceiling_test/replicative_correlations.csv (I2, thr 0.5)",0.08349433131616606,MISMATCH,D12: rounds to +0.083; error originates in REPORT_replicative_ceiling.md:234
+C,C8,"Shared-control observed +0.564, null +0.523",output/replicative_ceiling_test/shared_denominator_null.txt,+0.5642; +0.5231,MATCH,
+D,D1,Spearman IMR90 +0.5484 = 86.1% of +0.637,output/ois_enhancer_run/results/results_train.json eval_rest,0.5484116314300708; 0.8609287777552131; ceiling 0.637,MATCH,
+D,D2,AUC = 0.9070,same,0.907004556857948,MATCH,
+D,D3,"Evaluable 26,936 of 100,070; ambiguous 73,134",same,26936 / 100070 / 73134,MATCH,sums verified
+D,D4,"chr9+chr6 +0.5250 (82.4%), AUC 0.8899",same eval_chr9_chr6,0.5249507759070756; 0.8240985493046713; 0.8899005853011095,MATCH,
+D,D5,"IMR90 SEN vs QUI +0.5895, AUC 0.9354",same eval_rest,0.5895035068695315; 0.9354146775192059,MATCH,
+D,D6,"Shuffled-label 0/200 both, p 0.00498",same control1,n_beating 0 / 0; empirical_p 0.004975124378109453,MATCH,recounted from 200 stored values
+D,D7,"Untrained head -0.0903, AUC 0.3842",same control2,-0.09030808019676641; 0.3842417077772162,MATCH,
+D,D8,Shuffled embeddings +0.548 -> +0.025,same control3,0.024962857674289466,MATCH,
+D,D9,Prediction sd 0.5137 vs measured 0.9601,same eval_rest,0.5137194991111755; 0.960066556930542,MATCH,"D4: probe json has 0.5138/0.9614 over 111,671 regions"
+E,E1,"112,099 consensus; 111,671 surviving",output/ois_enhancer_trainset/region_stats.json; output/ois_enhancer_run/ois_cache/sanitize_stats.json,112099; 111671,MATCH,
+E,E2,Losses 247/154/21/6; 0.38%,"output/ois_enhancer_trainset/STEP2_LOG.txt s5,s7",247;154;21;6; 428/112099=0.3818%,MATCH,
+E,E3,"Liftover 99.92% midpoint, 99.96% span",output/enhancer_test/harmonization_stats.json,99.91758611410118; 99.95996797437951,MATCH BUT MISATTRIBUTED,D1: OIS trainset's own liftover is 99.98%
+E,E4,"111,671 regions -> 8,459 windows, 13.2/window",output/ois_enhancer_run/ois_cache/sanitize_stats.json,111671; 8459; ratio 13.201,MATCH,"D3: trainset build says 111,677 -> 8,432 (13.244)"
+E,E5,Median K27ac->ATAC summit distance 245 bp,output/ois_enhancer_trainset/STEP1_LOG.txt s2,245 bp,MATCH,
+E,E6,Cross-dataset reproducibility +0.637,output/ois_enhancer_trainset/step2_stats.json,"0.6365320223147795 (n=83,716 at thr 0.5)",MATCH,threshold must be stated
+E,E7a,35% of diff-ATAC show no H3K27ac change,output/enhancer_test/step2_stats.json,1-0.6497684621009018 = 35.02%,MATCH,
+E,E7b,93.0% directional agreement where both move,output/enhancer_test/step2_stats.json; REPORT_enhancer_cross_mechanism.md:225,"12429/13330 = 93.24%; report states 12,432 = 93.3%",MISMATCH,D6: claim matches neither; report and JSON also disagree by 3 regions
+E,E8,"Quiescence +0.880, +0.036; sd 0.46 vs 0.97",output/ois_enhancer_trainset/STEP2_LOG.txt s1,+0.8800; +0.0355; sd 0.4598; sd 0.9652,MATCH,
+E,E9,Batch PCA status 0.777 vs study 0.448,output/ois_enhancer_trainset/batch_pca_stats.csv (raw pooled PC1),0.776726601064073; 0.44766651259202994,MATCH,
+E,E10,Identity worst 3.31e-07 vs 1e-04,output/ois_enhancer_run/ois_cache/preflight.json,3.3053336317829245e-07; 0.0001,MATCH,
+E,E11,"Bin arithmetic 5,387 pairs, 0 bad",same,5387; 0,MATCH,
+F,F1,Required delta +0.861,output/ois_enhancer_run/results/results_probe.json,0.8612759113311768,MATCH,
+F,F2,"Best +0.6657, sd 0.0487, n=10, NFkB+ETS clustered K=12",output/ois_gates/results/gate1_results.json best,0.6656626462936401; adjusted_sem 0.048732499060084866,MATCH ON VALUE; MISLABELLED,D7: 0.0487 is SEM; true SD = 0.1541
+F,F3,"Shortfall +0.196, ratio 0.773x",same,0.1956133; frac_of_required 0.7728796748359079,MATCH,
+F,F4,"Best pair over best single +0.0639, sd 0.0414, p 0.157",output/ois_gates/REPORT_ois_gates.md s1.3 (prose only),recomputed: 0.0639; SEM 0.0414; SD 0.1309; p 0.1571,MATCH ON VALUE; NOT IN ANY RESULTS FILE,D7 mislabel; D8 no stored artifact
+F,F5,"All five conditions peak at K=12, decline at K=18 and K=20",output/ois_gates/results/gate1b_dose_curve.csv,ETS1 peaks K=6 (+0.2277 vs +0.2147); triple rises K18->K20 (+0.1455 -> +0.2753),MISMATCH,D13: 4 of 5 peak at K=12; error also in REPORT_ois_gates.md prose
+F,F6,"Clustered beat interleaved 8/8, 3 significant, up to +0.294",output/ois_gates/results/gate1_spacing.csv,8/8; 3 with p<0.05; max abs diff 0.2939751744270324,MATCH,
+F,F7,"NFkB +0.665 at 8 copies, scrambled +0.125, ratio 5.3x",output/ois_enhancer_run/results/results_probe.json,0.6653652131557464; 0.12504179477691646; ratio 5.321,MATCH,
+F,F8,C/EBPb scrambled +0.068,same,0.06829091310501101,MATCH,
+F,F9,"AP-1 -0.464, rho -0.375, scrambled -0.016",same,-0.46432673633098603; -0.37484156984116956; -0.015941154956817583,MATCH,
+G,G1,"Ablation high -0.1055, p 0.032",output/ois_gates/results/gate2_ap1_results.json,-0.10550387452046073; 0.03221350924508854,MATCH,
+G,G2,Ablation low +0.0658,same,0.06576001347275451,MATCH,
+G,G3,Interaction p 0.0091,same welch_p,0.009063013838304235,MATCH,Mann-Whitney 0.00757959203158261
+G,G4,"Continuous Spearman -0.364, p 0.011, n 48",same,-0.36354754667824574; 0.011088281505031718; 48,MATCH,
+G,G5,"NFkB positive control -0.1404, p 0.0003",same,-0.1404095912973086; 0.00029890902470616266,MATCH,
+G,G6,"AP-1 ISM 3.61x, p 0.0002, n 16",output/ois_gates/results/gate2_h1a_ism_enrichment.csv,mean 3.6086; p 0.000216; n 16,MATCH,
+G,G7,"AP-1 decile frequency 0.086 to 0.179, OR 2.31, p 5.9e-94",output/ois_gates/results/gate2_h3_frequency_by_decile.csv,0.086139 -> 0.178562; OR 2.306186; p 5.912336e-94,MATCH,"D9: series peaks at 0.1989 (decile 6), not monotonic"
+G,G8,"AP-1 regions H3K27ac +0.206, p 2e-283, n 16,909",output/ois_gates/results/gate2_h3_motif_vs_assay.csv,0.206123; 1.999463e-283; 16909,MATCH,
+G,G9,"Top ATAC quartile AP-1 higher H3K27ac, p 4.9e-05",output/ois_gates/results/gate2_h3_conditional.csv,delta +0.048217; p 4.900534e-05; n_with 4657,MATCH,
+G,G10,Sign agreement 50/50 and 20/20,output/ois_enhancer_run/results/results_probe.json dynamic_range,50; 20,MATCH,
+H,H1,"Borzoi 185,892,699 parameters",infra_borzoi_grelu/REPORT.md:155; execution_results/task1_output.log:3,"185,892,699",MATCH,
+H,H2,"524,288 bp input",infra_borzoi_grelu/REPORT.md:156,"524,288 bp",MATCH,
+H,H3,32 bp bins,infra_borzoi_grelu/REPORT.md:157,32 bp bins,MATCH,
+H,H4,"7,611 tracks",infra_borzoi_grelu/REPORT.md:158; execution_results/task1_output_tracks.csv,"7,611 (3886+1543+1276+674+232)",MATCH,
+H,H5,hg38,infra_borzoi_grelu/REPORT.md:159,hg38,MATCH,
+H,H6,"IUPAC counts, 19,652-gene run",infra_borzoi_grelu/execution_results_finetune/sanitize_stats.json,genes_sanitized 49; chars_replaced 133,FOUND,
+H,H7,"IUPAC counts, 13,211-gene run",infra_borzoi_grelu/execution_results_transfer/cache_expanded/sanitize_stats.json,"genes_sanitized 31; chars_replaced 70; bases 6,926,368,768 = 13,211x524,288",FOUND,
+H,H8,"IUPAC counts, enhancer run",output/ois_enhancer_run/ois_cache/sanitize_stats.json,windows_sanitized 33; chars_replaced 98,FOUND,
+H,H9,Total compute spend across all sessions,(none),"no project-wide total exists; nearest is '~$2.72 across all four pod sessions' (infra_borzoi_grelu/REPORT.md:1181), stale and partial",NOT FOUND,D10: documented sessions sum to ~$8.63; pod 5 unpriced

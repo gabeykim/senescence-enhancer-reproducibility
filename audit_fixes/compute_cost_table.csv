@@ -1,0 +1,16 @@
+session,what_ran,elapsed,rate_usd_per_hour,cost_usd,cost_source,source_file
+Pod 1,Task 1 smoke test (param/track contract) + Task 2 sweep 118 genes,~60 min,0.75,0.75,stored figure,infra_borzoi_grelu/REPORT.md:1154
+Pod 2,venv + gReLU install + genome setup + corrected Task 2,~44 min,0.75,0.55,stored figure,infra_borzoi_grelu/REPORT.md:1155
+Pod 3,gReLU install + genome staging + Task 3 and Task 4 (2 failed + 2 successful each),~73 min,0.75,0.91,stored figure,infra_borzoi_grelu/REPORT.md:852
+Pod 4,fine-tune calibration pass (caching verified; nothing trained),~41 min,0.75,0.51,stored figure,infra_borzoi_grelu/REPORT.md:1163
+Pod 5,full trunk cache 19652 genes (2.53 h measured) + head training + setup (both untimed),>=2.53 h,0.75,>=1.90,reconstructed from stored elapsed,infra_borzoi_grelu/execution_results_finetune/cache_pass_clean.log ("CACHE COMPLETE 2.53 h")
+Transfer,expanded cache 13211 genes (1.66 h) + transfer heads + setup 0.42 h,~2.3 h,0.75,1.72,stored figure,infra_borzoi_grelu/execution_results_transfer/REPORT_transfer.md:254
+Generation probe,setup 25 min + rerun + ISM/motif-insertion probe ~28 min,~0.77 h,0.75,0.58,stored figure,infra_borzoi_grelu/execution_results_generation_probe/REPORT_generation_probe.md:266
+Permutations,200-permutation null over cached embeddings,~0.42 h,0.75,0.32,stored figure,infra_borzoi_grelu/execution_results_permutations/REPORT_permutations.md:256
+OIS enhancer run,setup 0.35 h + cache 1.16 h + training/200 controls 0.09 h + probe 1.7 h + retrieval 0.2 h,3.53 h,0.75,2.65,stored figure,output/ois_enhancer_run/REPORT_ois_enhancer_run.md:4
+OIS gates,setup 0.13 h + Gate 1/1b + Gate 2 + figures,0.857 h,0.75,0.64,stored figure,output/ois_gates/REPORT_ois_gates.md (Cost)
+Local: OIS trainset build,region build + quantification + AnnData,n/a,0,0.00,stated local-only,output/ois_enhancer_trainset/ (no GPU)
+Local: expanded trainset build,multistudy AnnData build,n/a,0,0.00,stated local-only,infra_borzoi_grelu/REPORT.md:1160
+Local: enhancer cross-mechanism test,anchors + quantification + correlations,n/a,0,0.00,stated local-only,output/enhancer_test/ (no GPU)
+Local: replicative ceiling test,hg18 liftover + quantification + correlations,n/a,0,0.00,stated local-only,output/replicative_ceiling_test/ (no GPU)
+Local: number audit + audit fixes,verification only,n/a,0,0.00,stated local-only,output/number_audit/ and output/audit_fixes/

@@ -1,0 +1,30 @@
+accession,type,live_status,title_or_type,bioproject,verified_utc
+GSE175533,GEO Series,LIVE,Revisiting the Hayflick Limit (n=147),PRJNA732700,2026-10-04
+GSE74324,GEO Series,LIVE,BRD4 connects enhancer remodeling (RNA-seq n=72),PRJNA299683,2026-10-04
+GSE74238,GEO Series,LIVE,BRD4 connects enhancer remodeling (ChIP-Seq n=22),PRJNA299593,2026-10-04
+GSE206402,GEO Series,LIVE,Escape From OIS [ATAC-seq] (n=25),PRJNA850441,2026-10-04
+GSE106146,GEO Series,LIVE,p300 induces de novo super-enhancers (n=82),PRJNA415730,2026-10-04
+GSE205692,GEO Series,LIVE,Escape From OIS (n=34),PRJNA847199,2026-10-04
+GSE210285,GEO Series,LIVE,Integrated multi-omics senescence landscape (n=4),PRJNA865031,2026-10-04
+GSE205898,GEO Series,LIVE,Escape From OIS [ChIP-seq] (n=30),PRJNA848201,2026-10-04
+GSE220545,GEO Series,LIVE,Senescence-committed vs uncommitted transcriptome (n=6),PRJNA910178,2026-10-04
+GSE146585,GEO Series,LIVE,Functional genomics assays (n=223),PRJNA610876,2026-10-04
+GSE99028,GEO Series,LIVE,Etoposide-induced senescent cells (n=6),PRJNA387040,2026-10-04
+GSE206493,GEO Series,LIVE,Escape From OIS [RNA-seq] (n=12),PRJNA851072,2026-10-04
+GSE206496,GEO Series,LIVE,Escape From OIS (n=101),PRJNA851070,2026-10-04
+GSE254358,GEO Series,DOES NOT EXIST,esearch count = 0,,2026-10-04
+ENCSR200OML,ENCODE,LIVE,Experiment ATAC-seq released,,2026-10-04
+ENCSR978WIX,ENCODE,LIVE,Annotation ChromBPNet-model released,,2026-10-04
+ENCSR169RNU,ENCODE,LIVE,Annotation released,,2026-10-04
+PRJNA732700,BioProject,LIVE,,,2026-10-04
+PRJNA299683,BioProject,LIVE,,,2026-10-04
+PRJNA299593,BioProject,LIVE,,,2026-10-04
+PRJNA850441,BioProject,LIVE,,,2026-10-04
+PRJNA847199,BioProject,LIVE,,,2026-10-04
+PRJNA865031,BioProject,LIVE,,,2026-10-04
+PRJNA910178,BioProject,LIVE,,,2026-10-04
+PRJNA851070,BioProject,LIVE,,,2026-10-04
+PRJNA851072,BioProject,LIVE,,,2026-10-04
+PRJNA848201,BioProject,LIVE,,,2026-10-04
+PRJNA439280,BioProject,LIVE,,,2026-10-04
+PRJNA387040,BioProject,LIVE,,,2026-10-04

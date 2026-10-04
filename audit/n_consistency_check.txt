@@ -1,0 +1,36 @@
+Internal n-consistency check, output/ois_enhancer_run/results/results_train.json
+Run 2026-10-04. All checks PASS.
+
+  OK  eval_rest/IMR90_SEN_vs_PRO  evaluable+ambiguous==total : 26936+73134 = 100070
+  OK  eval_rest/IMR90_SEN_vs_PRO  pos+neg==evaluable         : 17240+9696  = 26936
+  OK  eval_rest/IMR90_SEN_vs_QUI  evaluable+ambiguous==total : 31615+68455 = 100070
+  OK  eval_rest/IMR90_SEN_vs_QUI  pos+neg==evaluable         : 18840+12775 = 31615
+  OK  eval_rest/GM21_RAS_vs_EV    evaluable+ambiguous==total : 18430+81640 = 100070
+  OK  eval_rest/GM21_RAS_vs_EV    pos+neg==evaluable         : 12044+6386  = 18430
+  OK  eval_chr9_chr6/IMR90_SEN_vs_PRO evaluable+ambiguous    : 3267+8334   = 11601
+  OK  eval_chr9_chr6/IMR90_SEN_vs_PRO pos+neg==evaluable     : 2074+1193   = 3267
+  OK  eval_chr9_chr6/IMR90_SEN_vs_QUI evaluable+ambiguous    : 3752+7849   = 11601
+  OK  eval_chr9_chr6/IMR90_SEN_vs_QUI pos+neg==evaluable     : 2157+1595   = 3752
+  OK  eval_chr9_chr6/GM21_RAS_vs_EV   evaluable+ambiguous    : 2265+9336   = 11601
+  OK  eval_chr9_chr6/GM21_RAS_vs_EV   pos+neg==evaluable     : 1423+842    = 2265
+  OK  control2_untrained              evaluable+ambiguous    : 26936+73134 = 100070
+  OK  control2_untrained              pos+neg==evaluable     : 17240+9696  = 26936
+  OK  control3_shuffled_embeddings    evaluable+ambiguous    : 26936+73134 = 100070
+  OK  control3_shuffled_embeddings    pos+neg==evaluable     : 17240+9696  = 26936
+  OK  train+early_stop==non_test                             : 88282+11788 = 100070
+  OK  non_test+test_chr9_chr6==111671                        : 100070+11601= 111671
+  OK  permutation list length                                : 200
+  OK  n_beating recounted from the 200 stored Spearmans      : 0 (stored 0)
+  OK  stored permutation max 0.094796 == recomputed max
+
+Region-loss arithmetic (output/ois_enhancer_trainset/STEP2_LOG.txt):
+  OK  247 + 154 + 21 + 6 = 428 = 112099 - 111671 ; 428/112099 = 0.3818%  (claimed 0.38%)
+
+Window-covering ratios:
+      111671 / 8459 = 13.201   (cache, sanitize_stats.json)
+      111677 / 8432 = 13.244   (trainset build, step2_stats.json + window_covering_per_chrom.csv)
+
+Directional-agreement percentages (output/enhancer_test):
+      12429 / 13330 = 93.24%   (step2_stats.json, machine-written)
+      12432 / 13330 = 93.26%   (REPORT_enhancer_cross_mechanism.md:225, stated as 93.3%)
+      claimed 93.0% matches neither
