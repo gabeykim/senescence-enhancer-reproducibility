@@ -1,0 +1,11 @@
+arm_label,accession,cell_line,mechanism,assay,n_senescent,n_control,control_arm,genome_build,independent_control,source_file
+IMR90 replicative,GSE146585 / GSE146567,IMR-90,replicative,H3K27ac,2,2,young,hg18,yes,replicative_ceiling_test/step2_stats.json + scripts/60_fetch_replicative_ceiling.sh
+BJ replicative,GSE146585 / GSE146559,BJ,replicative,H3K27ac,1,1,young,hg18,yes,replicative_ceiling_test/step2_stats.json + scripts/60_fetch_replicative_ceiling.sh
+GSE106146 replicative,GSE106146,fibroblast,replicative,H3K27ac,1,1,proliferating (P2),hg19,no (shared with IR),replicative_ceiling_test/step2_stats.json + scripts/60_fetch_replicative_ceiling.sh
+GSE106146 IR,GSE106146,fibroblast,irradiation,H3K27ac,2,1,proliferating (P2),hg19,no (shared with replicative),replicative_ceiling_test/step2_stats.json + scripts/60_fetch_replicative_ceiling.sh
+IMR90 OIS same-lab,GSE146585 / GSE146563,IMR-90,OIS,H3K27ac,1,1,GFP control,hg18,yes,replicative_ceiling_test/step2_stats.json + scripts/60_fetch_replicative_ceiling.sh
+GM21 OIS,GSE205898,GM21 (skin fibroblast),OIS,H3K27ac,2,2,empty vector,hg19,yes,ois_enhancer_trainset h5ad obs + STEP1_LOG.txt
+IMR90 OIS (SEN vs PRO),GSE74238,IMR-90 (lung fibroblast),OIS,H3K27ac,2,2,proliferating,hg19,yes,ois_enhancer_trainset h5ad obs + STEP1_LOG.txt
+IMR90 OIS (SEN vs QUI),GSE74238,IMR-90 (lung fibroblast),OIS,H3K27ac,2,2,quiescent,hg19,yes,ois_enhancer_trainset h5ad obs + STEP1_LOG.txt
+GM21 OIS ATAC,GSE206402,GM21 (skin fibroblast),OIS,ATAC,4,4,empty vector,hg19,yes,ois_enhancer_trainset STEP1_LOG.txt + replicative_ceiling_test/step2_stats.json
+WI-38 replicative ATAC,GSE175533,WI-38,replicative,ATAC,0,0,deposited log2FC only,hg19,n/a,replicative_ceiling_test/step2_stats.json (WI38_rep_atac = "deposited log2FC")
