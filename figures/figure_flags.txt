@@ -1,0 +1,1 @@
+FIG 2 / MANUSCRIPT MISMATCH — REPORT_replicative_ceiling.md:24 states 'The three within-replicative values (+0.054, +0.144, +0.268) fall inside the range of the four cross-mechanism values (-0.164 to +0.164).' Stored data: R3 = +0.2682 is OUTSIDE that range (upper bound +0.1639). Two of three are inside, not three of three.

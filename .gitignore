@@ -6,6 +6,8 @@
 !results/ois_model/pred_test.npy
 !results/ois_model/idx_rest.npy
 !results/ois_model/pred_rest.npy
+!results/ois_model/measured_IMR90_SEN_vs_PRO_rest.npy
+!results/ois_model/measured_IMR90_SEN_vs_PRO_test.npy
 region_fwd.npy
 region_rc.npy
 cache_fwd.npy

@@ -1,0 +1,4 @@
+task,study,cell_line,tissue,mechanism,control_arm,n_replicates,role
+GM21_RAS_vs_EV,GSE205898,GM21,skin fibroblast,OIS_ERRAS,empty vector,2 vs 2,train
+IMR90_SEN_vs_PRO,GSE74238,IMR90,lung fibroblast,OIS_HRasV12,proliferating,2 vs 2,validation
+IMR90_SEN_vs_QUI,GSE74238,IMR90,lung fibroblast,OIS_HRasV12,quiescent,2 vs 2,validation

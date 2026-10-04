@@ -12,6 +12,12 @@ designing one.
   [CC-BY 4.0](LICENSE-DATA) for `results/`, `figures/`, `audit/`,
   `audit_fixes/` and `reports/`.
 
+This repository keeps its working reports exactly as they were written and
+documents its own corrections rather than quietly fixing them: five
+discrepancies found between those reports and the stored data are listed in
+[reports/ERRATA.md](reports/ERRATA.md). The manuscript carries the corrected
+values throughout.
+
 ---
 
 ## Read this first: every H3K27ac arm is n = 2
@@ -201,18 +207,25 @@ drifted: the ROC AUC recomputed from `pred_rest.npy` must equal the stored
 
 | Figure | Script | Source data |
 |---|---|---|
-| 1 Data landscape | `99_figures_main.py::fig1` | `figures/dataset_table.csv`, built from `results/replicative_ceiling/step2_stats.json`, `scripts/60_fetch_replicative_ceiling.sh`, OIS AnnData `obs`, `results/ois_trainset/STEP1_LOG.txt` |
+| 1 Data landscape | `99_figures_main.py::fig1` | `figures/dataset_table.csv`, built from `results/replicative_ceiling/step2_stats.json`, `scripts/60_fetch_replicative_ceiling.sh`, `results/ois_trainset/trainset_obs.csv`, `results/ois_trainset/STEP1_LOG.txt` |
 | 2 Reproducibility matrix | `99_figures_main.py::fig2` | `results/replicative_ceiling/replicative_correlations.csv`; `results/enhancer_cross_mechanism/cross_mechanism_correlations.csv` |
 | 3 Threshold sensitivity | `99_figures_main.py::fig3` | same two files, all four thresholds |
 | 4 CDKN2A promoter vs distal | `99_figures_main.py::fig4` | `results/replicative_ceiling/locus_sanity_checks.csv` |
-| 5 OIS model performance | `99_figures_main.py::fig5` | `results/ois_model/results_train.json`, `pred_rest.npy`, `idx_rest.npy`; OIS AnnData |
+| 5 OIS model performance | `99_figures_main.py::fig5` | `results/ois_model/results_train.json`, `pred_rest.npy`, `idx_rest.npy`, `measured_IMR90_SEN_vs_PRO_rest.npy` |
 | 6 Design ceiling | `99_figures_main.py::fig6` | `results/design_gates/gate1b_dose_curve.csv`, `gate1_spacing.csv`, `gate1_results.json`; `audit_fixes/additivity_contrast_per_seed.csv` |
 | 7 AP-1 context dependence | `99_figures_main.py::fig7` | `results/ois_model/results_probe.json`; `results/design_gates/gate2_ap1_results.json`, `gate2_h3_frequency_by_decile.csv` |
-| S1 ATAC vs H3K27ac | `99b_figures_supp.py::s1` | `results/enhancer_cross_mechanism/step2_stats.json`; `region_responses.csv` (Zenodo) |
+| S1 ATAC vs H3K27ac | `99b_figures_supp.py::s1` | `results/enhancer_cross_mechanism/step2_stats.json`, `gm21_atac_vs_k27ac.csv` |
 | S2 Batch structure | `99b_figures_supp.py::s2` | `results/ois_trainset/batch_pca_stats.csv`, `STEP2_LOG.txt` |
 | S3 Shared-control artifact | `99b_figures_supp.py::s3` | `results/replicative_ceiling/shared_denominator_null.txt`, `replicative_correlations.csv` |
-| S4 Exhaustive 3v3 null | `99b_figures_supp.py::s4` | `results_perm200.json` (expression phase; Zenodo) |
+| S4 Exhaustive 3v3 null | `99b_figures_supp.py::s4` | `results/expression_phase/results_perm200.json` |
 | S5 Motif dose response | `99b_figures_supp.py::s5` | `results/ois_model/motif_insertion.csv`, `results_probe.json` |
+
+**Every source file in this table is in this repository**, so all twelve figures
+regenerate from a clone with no Zenodo download and no GPU. Verified: the twelve
+PNGs regenerate byte-identical. Four of the entries are small faithful extracts of
+larger deposited artifacts (`trainset_obs.csv`, `measured_IMR90_SEN_vs_PRO_*.npy`,
+`gm21_atac_vs_k27ac.csv`); each script falls back to the full artifact when it is
+present, so nothing diverges.
 
 Full stand-alone captions, with n and dispersion type for every panel, are in
 [figures/captions.md](figures/captions.md). Every error bar in the set is SEM
