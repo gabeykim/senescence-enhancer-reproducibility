@@ -1,0 +1,30 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 Gabe Kim
+
+APPLIES TO, and only to, the non-code content of this repository:
+
+  results/     derived result tables, summary statistics and logs
+  figures/     the twelve publication figures (PNG + PDF) and captions.md
+  audit/       the number audit and accession verification records
+  audit_fixes/ the audit correction artifacts
+  reports/     the working reports and ERRATA.md
+
+Everything under scripts/ and env/ is MIT licensed instead; see LICENSE.
+
+You are free to share and adapt this material for any purpose, including
+commercially, provided you give appropriate credit, link to the licence, and
+indicate if changes were made.
+
+Full text: https://creativecommons.org/licenses/by/4.0/legalcode
+Summary:   https://creativecommons.org/licenses/by/4.0/
+
+THIRD-PARTY DATA NOT COVERED BY THIS LICENCE
+--------------------------------------------
+This repository contains no raw sequencing data. The derived tables are
+computed from publicly deposited GEO and ENCODE datasets, which remain under
+their own terms and should be cited directly. Every accession used is listed
+with its live verification status in audit/accession_log_merged.csv.
+
+data/GSE254358/ holds three NCBI HTTP 404 error pages, retained as provenance
+evidence. They are NCBI server output, not authored content.

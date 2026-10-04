@@ -1,0 +1,50 @@
+# GPU environment — the one that produced every model result in this repository
+# =============================================================================
+# Steps 80-96 (trunk caching, head training, probes, design gates) ran here.
+# Steps 01-71 and 97-99 do NOT need a GPU; see env/local-analysis.lock.txt.
+#
+# HONESTY NOTE, READ THIS BEFORE TRUSTING THE PINS BELOW.
+# `scripts/80_setup_pod.sh` installs with `pip -q install`, which suppresses the
+# resolution output, so no `pip freeze` was ever captured and the rented hosts
+# were destroyed after each run. The versions below are the ones EVIDENCED by
+# the surviving run logs and by the pinned installer; the full transitive set
+# was never recorded and is NOT reconstructed here, because inventing pins would
+# be worse than admitting the gap.
+#
+# To produce a real, fully-resolved lockfile: run scripts/80_setup_pod.sh on a
+# fresh instance and immediately `pip freeze > requirements.resolved.txt`.
+
+# ---- evidenced directly by a saved log ----
+# output/ois_gates/logs/setup.log and ois_enhancer_run/logs/setup.log both print:
+#   "grelu 1.1.0 | torch 2.8.0+cu128 | cuda True"
+gReLU==1.1.0
+torch==2.8.0+cu128          # CUDA 12.8 wheel, installed as the base image's system torch
+
+# ---- evidenced by the installer script (scripts/80_setup_pod.sh) ----
+# genomepy + pyfaidx arrive as gReLU dependencies; the script calls both directly.
+genomepy                    # version not pinned by the installer, not captured
+pyfaidx                     # version not pinned by the installer, not captured
+
+# ---- observed at runtime on the host, not preserved in a log file ----
+# python 3.12.3              (`python3 -V` on the pod)
+# numpy 2.1.2                (system site-packages, reused via --system-site-packages)
+# matplotlib 3.11.2          (pulled in as a gReLU dependency)
+# pandas, anndata, h5py, scipy — present via gReLU, versions not captured
+# pyarrow / fastparquet      — ABSENT. This is load-bearing: scripts/93_gate2_scan.py
+#                              originally wrote Parquet and failed with
+#                              "Unable to find a usable engine", which is why it
+#                              now writes CSV.
+
+# ---- platform ----
+# OS            Ubuntu 24.04  (inferred: PEP 668 externally-managed-environment
+#                              behaviour + Python 3.12 default)
+# CUDA          12.8          (from the +cu128 wheel tag)
+# GPU           RTX 4090 24 GB for steps 80-83; RTX 3090 24 GB for steps 90-96.
+#               Both fit the workload; peak observed GPU memory was 3.82 GB.
+# NOT installed flash-attn, conda, Flashzoi — none is needed for this workload.
+
+# ---- install, exactly as run ----
+# python3 -m venv --system-site-packages /workspace/venv   # see ENVIRONMENT.md, quirk 1
+# /workspace/venv/bin/pip install --upgrade pip
+# /workspace/venv/bin/pip install gReLU==1.1.0
+# then the NCBI genome staging in scripts/80_setup_pod.sh  # see quirks 2-3

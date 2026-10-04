@@ -1,0 +1,22 @@
+# Local CPU environment — audit, provenance checks and all twelve figures
+# ======================================================================
+# Steps 97-99 (and the whole audit/ and audit_fixes/ tree) run here. No GPU.
+# These versions ARE exact: captured with importlib.metadata on the machine
+# that produced the figures in figures/ on 2026-10-04.
+
+python==3.14.2
+numpy==2.4.6
+pandas==3.0.3
+scipy==1.18.0
+matplotlib==3.11.0
+h5py==3.16.0
+anndata==0.13.2
+scikit-learn==1.9.0
+pillow==12.1.0
+
+# scikit-learn is used only by scripts/99_figures_main.py (ROC curve, Figure 5D).
+# pillow is used only to verify rendered figure dimensions.
+# No GPU, no CUDA, no gReLU, no torch needed for anything in this file's scope.
+#
+#   python3 -m venv .venv && source .venv/bin/activate
+#   pip install -r env/local-analysis.lock.txt

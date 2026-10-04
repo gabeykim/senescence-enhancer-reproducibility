@@ -1,0 +1,43 @@
+# Trunk embedding caches and other large derived arrays -> Zenodo, never git.
+# These are 818 MB each; GitHub hard-rejects above 100 MB and Git LFS is
+# deliberately not used (its quotas break anonymous cloning).
+*.npy
+!results/ois_model/idx_test.npy
+!results/ois_model/pred_test.npy
+!results/ois_model/idx_rest.npy
+!results/ois_model/pred_rest.npy
+region_fwd.npy
+region_rc.npy
+cache_fwd.npy
+cache_rc.npy
+
+# Raw downloaded data: public and re-fetchable with scripts/01,10,20,22,40,50,60.
+data/**
+!data/GSE254358/
+!data/GSE254358/**
+*.bigWig
+*.bw
+*.narrowPeak.gz
+*.soft
+*.soft.gz
+*.xlsx
+
+# Large intermediate matrices -> Zenodo
+signal_matrix*.csv
+region_responses*.csv
+anchors*.csv
+!figures/dataset_table.csv
+
+# Local noise
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+
+# The GSE254358 provenance evidence is exempt from every rule above.
+# These three files are NCBI 404 pages kept byte-for-byte; two carry .gz names
+# but are not gzip. They are the subject of a provenance claim in the paper.
+!data/GSE254358/GSE254358_family.soft.gz
+!data/GSE254358/GSE254358_series_matrix.txt.gz
+!data/GSE254358/suppl_listing.txt
+!data/GSE254358/README.md
