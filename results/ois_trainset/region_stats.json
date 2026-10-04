@@ -1,0 +1,12 @@
+{
+  "n_consensus_regions": 112099,
+  "peaks_per_sample": {
+    "EV_R1": 80382,
+    "EV_R2": 99615,
+    "RAS_R1": 132065,
+    "RAS_R2": 119821
+  },
+  "regions_with_atac_summit_inside": 92616,
+  "liftover_pct": 99.98126655902372,
+  "liftover_failed": 21
+}

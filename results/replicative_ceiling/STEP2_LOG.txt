@@ -1,0 +1,128 @@
+====================================================================================
+WITHIN-REPLICATIVE CEILING TEST -- STEP 2
+====================================================================================
+anchors 237,824  |  new signal columns 12
+
+[1] RESPONSES (log2 senescent/proliferating)
+------------------------------------------------------------------------------------
+  IMR90_rep_k27ac            n=2 vs 2           n=234,037  mean -0.2029  sd 0.6004
+  BJ_rep_k27ac               n=1 vs 1           n=184,111  mean +0.1736  sd 0.7219
+  Sen2019_rep_k27ac          n=1 vs 1           n=231,433  mean +0.0581  sd 0.5140
+  IMR90_OIS_k27ac_samelab    n=1 vs 1           n=164,077  mean -0.2757  sd 0.9670
+  Sen2019_IR_k27ac           n=2 vs 1           n=230,343  mean -0.0349  sd 0.4694
+  GM21_OIS_k27ac             n=2 vs 2           n=112,244  mean +0.0978  sd 0.8595
+  IMR90_OIS_k27ac_prior      n=2 vs 2           n=232,973  mean +0.2475  sd 0.9307
+  GM21_OIS_atac              n=4 vs 4           n=180,077  mean +0.1576  sd 0.6680
+  WI38_rep_atac              deposited log2FC   n=136,846  mean -0.0381  sd 1.0731
+
+[2] BATCH CHECK -- PCA on the harmonized region x sample matrix
+------------------------------------------------------------------------------------
+  matrix 140,606 anchors x 12 samples (complete cases)
+  raw pooled           PC1  var  35.0%  R2(study) 0.534  R2(status) 0.020  -> STUDY dominates
+  raw pooled           PC2  var  21.4%  R2(study) 0.062  R2(status) 0.105  -> STATUS dominates
+  raw pooled           PC3  var  17.5%  R2(study) 0.300  R2(status) 0.099  -> STUDY dominates
+
+  per-study centered   PC1  var  34.5%  R2(study) 0.000  R2(status) 0.038  -> STATUS dominates
+  per-study centered   PC2  var  27.6%  R2(study) 0.000  R2(status) 0.021  -> STATUS dominates
+  per-study centered   PC3  var  12.2%  R2(study) 0.000  R2(status) 0.568  -> STATUS dominates
+  figure -> /Users/gabeykim/Downloads/Senescence/output/replicative_ceiling_test/figures/replicative_batch_pca.png
+
+[3] CORRELATIONS
+------------------------------------------------------------------------------------
+
+  (R1) IMR90 replicative K27ac (n=2v2)  vs  GSE106146 replicative K27ac (n=1v1)
+       *** WITHIN-REPLICATIVE CEILING -- cross-lab, cross-build. Analog of OIS +0.653
+       |lfc|>=0.0  n=230,130  Spearman +0.0633   Pearson +0.1097
+       |lfc|>=0.25 n=205,247  Spearman +0.0812   Pearson +0.1164
+       |lfc|>=0.5  n=144,754  Spearman +0.1439   Pearson +0.1526  <-- PRIMARY
+       |lfc|>=1.0  n=35,969   Spearman +0.3268   Pearson +0.3119
+
+  (R2) IMR90 replicative K27ac (n=2v2)  vs  BJ replicative K27ac (n=1v1)
+       within-replicative, SAME lab/pipeline/build, different cell line (upper bound)
+       |lfc|>=0.0  n=183,431  Spearman -0.0427   Pearson +0.0135
+       |lfc|>=0.25 n=170,441  Spearman -0.0214   Pearson +0.0173
+       |lfc|>=0.5  n=134,336  Spearman +0.0536   Pearson +0.0361  <-- PRIMARY
+       |lfc|>=1.0  n=43,900   Spearman +0.1795   Pearson +0.1344
+
+  (R3) BJ replicative K27ac (n=1v1)  vs  GSE106146 replicative K27ac (n=1v1)
+       within-replicative, cross-lab
+       |lfc|>=0.0  n=182,530  Spearman +0.2799   Pearson +0.2797
+       |lfc|>=0.25 n=165,928  Spearman +0.2774   Pearson +0.2794
+       |lfc|>=0.5  n=124,962  Spearman +0.2682   Pearson +0.2846  <-- PRIMARY
+       |lfc|>=1.0  n=35,776   Spearman +0.2932   Pearson +0.3317
+
+  (X1) IMR90 replicative K27ac (n=2v2)  vs  IMR90 OIS K27ac SAME LAB (n=1v1)
+       CROSS-MECHANISM, same lab/cell line/pipeline/build -- cleanest possible
+       |lfc|>=0.0  n=163,904  Spearman +0.1701   Pearson +0.1585
+       |lfc|>=0.25 n=153,928  Spearman +0.1566   Pearson +0.1555
+       |lfc|>=0.5  n=123,121  Spearman +0.1142   Pearson +0.1481  <-- PRIMARY
+       |lfc|>=1.0  n=60,483   Spearman +0.0839   Pearson +0.1466
+
+  (X2) IMR90 replicative K27ac (n=2v2)  vs  GM21 OIS K27ac (n=2v2)
+       CROSS-MECHANISM, cross-lab
+       |lfc|>=0.0  n=111,454  Spearman -0.1361   Pearson -0.1217
+       |lfc|>=0.25 n=102,579  Spearman -0.1344   Pearson -0.1213
+       |lfc|>=0.5  n=80,007   Spearman -0.1335   Pearson -0.1183  <-- PRIMARY
+       |lfc|>=1.0  n=33,957   Spearman -0.1069   Pearson -0.0972
+
+  (X3) IMR90 replicative K27ac (n=2v2)  vs  IMR90 OIS K27ac Tasdemir (n=2v2)
+       CROSS-MECHANISM, same cell line, different lab
+       |lfc|>=0.0  n=231,531  Spearman -0.2243   Pearson -0.1724
+       |lfc|>=0.25 n=218,435  Spearman -0.2088   Pearson -0.1686
+       |lfc|>=0.5  n=181,114  Spearman -0.1641   Pearson -0.1580  <-- PRIMARY
+       |lfc|>=1.0  n=80,181   Spearman -0.0728   Pearson -0.1178
+
+  (X4) GSE106146 replicative K27ac (n=1v1)  vs  GM21 OIS K27ac (n=2v2)
+       CROSS-MECHANISM, cross-lab
+       |lfc|>=0.0  n=111,359  Spearman +0.1588   Pearson +0.1561
+       |lfc|>=0.25 n=101,432  Spearman +0.1593   Pearson +0.1566
+       |lfc|>=0.5  n=77,110   Spearman +0.1639   Pearson +0.1602  <-- PRIMARY
+       |lfc|>=1.0  n=30,472   Spearman +0.1334   Pearson +0.1467
+
+  (A1) WI-38 replicative ATAC  vs  IMR90 replicative K27ac (n=2v2)
+       within-replicative, CROSS-ASSAY (analog of OIS +0.607)
+       |lfc|>=0.0  n=136,068  Spearman +0.2002   Pearson +0.2225
+       |lfc|>=0.25 n=124,851  Spearman +0.2058   Pearson +0.2236
+       |lfc|>=0.5  n=98,315   Spearman +0.2216   Pearson +0.2355  <-- PRIMARY
+       |lfc|>=1.0  n=47,583   Spearman +0.2855   Pearson +0.2991
+
+  (A2) WI-38 replicative ATAC  vs  GSE106146 replicative K27ac (n=1v1)
+       within-replicative, cross-assay
+       |lfc|>=0.0  n=135,253  Spearman +0.2045   Pearson +0.2113
+       |lfc|>=0.25 n=121,842  Spearman +0.2085   Pearson +0.2130
+       |lfc|>=0.5  n=92,401   Spearman +0.2256   Pearson +0.2237  <-- PRIMARY
+       |lfc|>=1.0  n=42,550   Spearman +0.2715   Pearson +0.2727
+
+  (I1) GSE106146 IR senescence K27ac (n=2v1)  vs  GSE106146 replicative K27ac (n=1v1)
+       IR vs replicative, SAME study/pipeline (shares the proliferating control)
+       |lfc|>=0.0  n=229,297  Spearman +0.4766   Pearson +0.5142
+       |lfc|>=0.25 n=190,051  Spearman +0.5000   Pearson +0.5233
+       |lfc|>=0.5  n=110,699  Spearman +0.5642   Pearson +0.5849  <-- PRIMARY
+       |lfc|>=1.0  n=17,754   Spearman +0.6374   Pearson +0.7537
+
+  (I2) GSE106146 IR senescence K27ac (n=2v1)  vs  GM21 OIS K27ac (n=2v2)
+       IR vs OIS, cross-lab
+       |lfc|>=0.0  n=111,295  Spearman +0.0483   Pearson +0.0781
+       |lfc|>=0.25 n=101,263  Spearman +0.0555   Pearson +0.0808
+       |lfc|>=0.5  n=76,620   Spearman +0.0835   Pearson +0.0947  <-- PRIMARY
+       |lfc|>=1.0  n=29,990   Spearman +0.2055   Pearson +0.1888
+
+  (I3) GSE106146 IR senescence K27ac (n=2v1)  vs  IMR90 replicative K27ac (n=2v2)
+       IR vs replicative, cross-lab
+       |lfc|>=0.0  n=229,128  Spearman +0.1399   Pearson +0.1557
+       |lfc|>=0.25 n=201,808  Spearman +0.1317   Pearson +0.1547
+       |lfc|>=0.5  n=138,174  Spearman +0.1153   Pearson +0.1574  <-- PRIMARY
+       |lfc|>=1.0  n=31,563   Spearman +0.1721   Pearson +0.2351
+
+  figure -> /Users/gabeykim/Downloads/Senescence/output/replicative_ceiling_test/figures/replicative_ceiling_scatter.png
+
+[4] SANITY -- CDKN2A / CDKN1A promoter vs distal (H3K27ac)
+------------------------------------------------------------------------------------
+
+  CDKN2A (chr9:21,967,751-21,995,300 hg19 +/-200 kb): 77 anchors (promoter <=2 kb: 10, distal: 67)
+    promoter  IMR90 rep -0.848 | BJ rep -0.632 | GSE106146 rep -0.431 | GSE106146 IR -0.583 | IMR90 OIS(same lab) -0.055 | GM21 OIS -1.029 | IMR90 OIS(prior) -1.068
+    distal    IMR90 rep -0.166 | BJ rep +0.215 | GSE106146 rep +0.311 | GSE106146 IR -0.064 | IMR90 OIS(same lab) -0.050 | GM21 OIS +0.240 | IMR90 OIS(prior) +0.490
+
+  CDKN1A (chr6:36,644,237-36,655,116 hg19 +/-200 kb): 68 anchors (promoter <=2 kb: 9, distal: 59)
+    promoter  IMR90 rep +0.188 | BJ rep +0.330 | GSE106146 rep +0.031 | GSE106146 IR +0.468 | IMR90 OIS(same lab) +0.110 | GM21 OIS +0.080 | IMR90 OIS(prior) -0.134
+    distal    IMR90 rep -0.118 | BJ rep +0.139 | GSE106146 rep +0.120 | GSE106146 IR +0.007 | IMR90 OIS(same lab) -0.373 | GM21 OIS +0.173 | IMR90 OIS(prior) +0.186

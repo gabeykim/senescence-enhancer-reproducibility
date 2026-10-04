@@ -1,0 +1,13 @@
+{
+  "bin_arithmetic_pairs_checked": 5387,
+  "bin_arithmetic_bad": 0,
+  "identity_devs": [
+    2.0095207072066034e-07,
+    1.32408872241857e-07,
+    3.3053336317829245e-07,
+    7.079541265548708e-08
+  ],
+  "identity_worst": 3.3053336317829245e-07,
+  "tolerance": 0.0001,
+  "verdict": "PASS"
+}

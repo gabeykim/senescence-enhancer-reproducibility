@@ -1,0 +1,15 @@
+{
+  "pseudocount": 0.1,
+  "primary_threshold": 0.5,
+  "n_per_arm": {
+    "IMR90_rep_k27ac": "n=2 vs 2",
+    "BJ_rep_k27ac": "n=1 vs 1",
+    "Sen2019_rep_k27ac": "n=1 vs 1",
+    "IMR90_OIS_k27ac_samelab": "n=1 vs 1",
+    "Sen2019_IR_k27ac": "n=2 vs 1",
+    "GM21_OIS_k27ac": "n=2 vs 2",
+    "IMR90_OIS_k27ac_prior": "n=2 vs 2",
+    "GM21_OIS_atac": "n=4 vs 4",
+    "WI38_rep_atac": "deposited log2FC"
+  }
+}

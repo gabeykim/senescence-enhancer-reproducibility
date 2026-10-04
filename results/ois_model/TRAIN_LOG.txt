@@ -1,0 +1,72 @@
+tasks: ['GM21_RAS_vs_EV', 'IMR90_SEN_vs_PRO', 'IMR90_SEN_vs_QUI']
+cache (111671, 1920); regions with a non-empty embedding: 111,671
+GM21 train regions 88,282 | GM21 early-stop 11,788 | chr9+chr6 held out 11,601
+
+head signed-output check: range [-2.6701, 0.7028] negatives 392/512 (76.6%) -> PASS
+
+==============================================================================
+TRAINING (GM21 target; IMR90 untouched)
+==============================================================================
+      ep   0 GM21-internal val MSE 0.44093
+      ep  10 GM21-internal val MSE 0.34411
+      ep  20 GM21-internal val MSE 0.33639
+      ep  30 GM21-internal val MSE 0.33291
+      ep  40 GM21-internal val MSE 0.33151
+      ep  50 GM21-internal val MSE 0.32991
+      ep  60 GM21-internal val MSE 0.33007
+      ep  70 GM21-internal val MSE 0.32968
+      ep  80 GM21-internal val MSE 0.32981
+  trained: GM21-internal val MSE 0.32932, 83 epochs, 5s
+
+--- PRIMARY: held-out IMR90 (n=2 vs 2), all non-chr9/chr6 regions ---
+  IMR90_SEN_vs_PRO   Spearman +0.5484 (86.1% of the 0.637 ceiling)  Pearson +0.5492
+                     AUC 0.9070  evaluable 26,936/100,070 (26.9%)  ambiguous 73,134  pos 17,240 neg 9,696
+  IMR90_SEN_vs_QUI   Spearman +0.5895 (92.5% of the 0.637 ceiling)  Pearson +0.5968
+                     AUC 0.9354  evaluable 31,615/100,070 (31.6%)  ambiguous 68,455  pos 18,840 neg 12,775
+  in-sample check GM21 Spearman +0.7049
+
+--- chr9 + chr6 (held out from everything) ---
+  IMR90_SEN_vs_PRO   Spearman +0.5250 (82.4% of ceiling)  Pearson +0.5232  AUC 0.8899  evaluable 3,267/11,601  ambiguous 8,334
+  IMR90_SEN_vs_QUI   Spearman +0.5728 (89.9% of ceiling)  Pearson +0.5732  AUC 0.9264  evaluable 3,752/11,601  ambiguous 7,849
+
+--- COLLAPSE CHECK ---
+  prediction sd 0.5137 vs measured IMR90 sd 0.9601  ratio 0.535
+  (a collapsed head would give ratio ~0; the target is signed so sd is the right check)
+
+--- CDKN2A / CDKN1A, promoter vs distal (chr9/chr6, fully held out) ---
+
+  CDKN2A: 59 regions (promoter 8, distal 51)
+    promoter  predicted -0.5937 | measured IMR90 -1.3412 | measured GM21 -0.9187 -> CORRECT
+    distal    predicted +0.1980 | measured IMR90 +0.4205 | measured GM21 +0.1725 -> CORRECT
+
+  CDKN1A: 37 regions (promoter 9, distal 28)
+    promoter  predicted +0.1416 | measured IMR90 -0.0419 | measured GM21 +0.2186 -> WRONG
+    distal    predicted +0.1685 | measured IMR90 +0.1984 | measured GM21 +0.1004 -> CORRECT
+
+==============================================================================
+CONTROLS
+==============================================================================
+
+--- CONTROL 1: shuffled-label permutations (n=200) ---
+      25/200  (35s elapsed)
+      50/200  (68s elapsed)
+      75/200  (101s elapsed)
+      100/200  (134s elapsed)
+      125/200  (168s elapsed)
+      150/200  (201s elapsed)
+      175/200  (233s elapsed)
+      200/200  (266s elapsed)
+    Spearman real +0.5484 | shuffled -0.0445 +/- 0.0607 range [-0.1892, +0.0948] | beat 0/200 | p=0.00498 PASS
+    AUC      real 0.9070 | shuffled 0.4673 +/- 0.0428 range [0.3683, 0.5601] | beat 0/200 | p=0.00498 PASS
+    resolution: min attainable p = 1/201 = 0.00498
+
+--- CONTROL 2: untrained randomly-initialised head ---
+    Spearman -0.0903  AUC 0.3842  evaluable 26,936
+
+--- CONTROL 3: shuffled region-to-embedding assignment (does it use sequence?) ---
+    Spearman +0.0250  AUC 0.5232
+    real +0.5484 vs shuffled-embedding +0.0250 -- a large gap means the model is using sequence, not per-region marginals
+
+==============================================================================
+CONTROL GATE: PASSED -- generation probe may run
+==============================================================================

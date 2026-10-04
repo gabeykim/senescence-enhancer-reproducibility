@@ -1,0 +1,11 @@
+{
+  "pseudocount": 0.1,
+  "test_chroms": [
+    "chr9",
+    "chr6"
+  ],
+  "atac_threshold": 0.5,
+  "spearman_gm21_vs_imr90_primary": 0.6365320223147795,
+  "distinct_windows": 8432,
+  "regions": 111677
+}

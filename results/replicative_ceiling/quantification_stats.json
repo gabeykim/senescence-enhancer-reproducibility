@@ -1,0 +1,5 @@
+{
+  "liftover_hg19_to_hg18_pct": 99.8688105489774,
+  "liftover_hg19_to_hg18_failed": 312,
+  "hg18_span_integrity_pct": 100.0
+}

@@ -1,0 +1,49 @@
+comparison,label,note,threshold,n,spearman,spearman_p,pearson
+R1,IMR90 replicative K27ac (n=2v2) vs GSE106146 replicative K27ac (n=1v1),"*** WITHIN-REPLICATIVE CEILING -- cross-lab, cross-build. Analog of OIS +0.653",0.0,230130,0.06329813662889718,6.27710616133975e-203,0.10967927362184549
+R1,IMR90 replicative K27ac (n=2v2) vs GSE106146 replicative K27ac (n=1v1),"*** WITHIN-REPLICATIVE CEILING -- cross-lab, cross-build. Analog of OIS +0.653",0.25,205247,0.08122607102954024,2.0595911261631986e-297,0.11641642116360168
+R1,IMR90 replicative K27ac (n=2v2) vs GSE106146 replicative K27ac (n=1v1),"*** WITHIN-REPLICATIVE CEILING -- cross-lab, cross-build. Analog of OIS +0.653",0.5,144754,0.14393701486681684,0.0,0.15255362250404408
+R1,IMR90 replicative K27ac (n=2v2) vs GSE106146 replicative K27ac (n=1v1),"*** WITHIN-REPLICATIVE CEILING -- cross-lab, cross-build. Analog of OIS +0.653",1.0,35969,0.3267534819931631,0.0,0.3118848864716941
+R2,IMR90 replicative K27ac (n=2v2) vs BJ replicative K27ac (n=1v1),"within-replicative, SAME lab/pipeline/build, different cell line (upper bound)",0.0,183431,-0.04273369835250682,6.81289673145717e-75,0.013480780797804424
+R2,IMR90 replicative K27ac (n=2v2) vs BJ replicative K27ac (n=1v1),"within-replicative, SAME lab/pipeline/build, different cell line (upper bound)",0.25,170441,-0.02140783686739543,9.652156397474634e-19,0.017328727780755542
+R2,IMR90 replicative K27ac (n=2v2) vs BJ replicative K27ac (n=1v1),"within-replicative, SAME lab/pipeline/build, different cell line (upper bound)",0.5,134336,0.05361793271687495,4.2225651390992214e-86,0.03614116090749073
+R2,IMR90 replicative K27ac (n=2v2) vs BJ replicative K27ac (n=1v1),"within-replicative, SAME lab/pipeline/build, different cell line (upper bound)",1.0,43900,0.17946319351891424,0.0,0.13442913070351978
+R3,BJ replicative K27ac (n=1v1) vs GSE106146 replicative K27ac (n=1v1),"within-replicative, cross-lab",0.0,182530,0.2799319836125143,0.0,0.2796735585294832
+R3,BJ replicative K27ac (n=1v1) vs GSE106146 replicative K27ac (n=1v1),"within-replicative, cross-lab",0.25,165928,0.27744656449604305,0.0,0.2793731858544579
+R3,BJ replicative K27ac (n=1v1) vs GSE106146 replicative K27ac (n=1v1),"within-replicative, cross-lab",0.5,124962,0.268230379137125,0.0,0.28462866632451683
+R3,BJ replicative K27ac (n=1v1) vs GSE106146 replicative K27ac (n=1v1),"within-replicative, cross-lab",1.0,35776,0.2932477877217066,0.0,0.33171318834961516
+X1,IMR90 replicative K27ac (n=2v2) vs IMR90 OIS K27ac SAME LAB (n=1v1),"CROSS-MECHANISM, same lab/cell line/pipeline/build -- cleanest possible",0.0,163904,0.17012667524233432,0.0,0.15850192276373248
+X1,IMR90 replicative K27ac (n=2v2) vs IMR90 OIS K27ac SAME LAB (n=1v1),"CROSS-MECHANISM, same lab/cell line/pipeline/build -- cleanest possible",0.25,153928,0.15656927490519534,0.0,0.15550469510413095
+X1,IMR90 replicative K27ac (n=2v2) vs IMR90 OIS K27ac SAME LAB (n=1v1),"CROSS-MECHANISM, same lab/cell line/pipeline/build -- cleanest possible",0.5,123121,0.11423358278017126,0.0,0.14811187228106432
+X1,IMR90 replicative K27ac (n=2v2) vs IMR90 OIS K27ac SAME LAB (n=1v1),"CROSS-MECHANISM, same lab/cell line/pipeline/build -- cleanest possible",1.0,60483,0.0838610369939439,7.909827361531222e-95,0.1465629945623664
+X2,IMR90 replicative K27ac (n=2v2) vs GM21 OIS K27ac (n=2v2),"CROSS-MECHANISM, cross-lab",0.0,111454,-0.13613001092926202,0.0,-0.1216690815235516
+X2,IMR90 replicative K27ac (n=2v2) vs GM21 OIS K27ac (n=2v2),"CROSS-MECHANISM, cross-lab",0.25,102579,-0.13435938700585803,0.0,-0.12132446523226043
+X2,IMR90 replicative K27ac (n=2v2) vs GM21 OIS K27ac (n=2v2),"CROSS-MECHANISM, cross-lab",0.5,80007,-0.13353742851598696,0.0,-0.11826305822686015
+X2,IMR90 replicative K27ac (n=2v2) vs GM21 OIS K27ac (n=2v2),"CROSS-MECHANISM, cross-lab",1.0,33957,-0.10688875857479391,7.599643582135989e-87,-0.09719110090572328
+X3,IMR90 replicative K27ac (n=2v2) vs IMR90 OIS K27ac Tasdemir (n=2v2),"CROSS-MECHANISM, same cell line, different lab",0.0,231531,-0.2242922673106758,0.0,-0.17239420021504295
+X3,IMR90 replicative K27ac (n=2v2) vs IMR90 OIS K27ac Tasdemir (n=2v2),"CROSS-MECHANISM, same cell line, different lab",0.25,218435,-0.2087626797421348,0.0,-0.1686012191763167
+X3,IMR90 replicative K27ac (n=2v2) vs IMR90 OIS K27ac Tasdemir (n=2v2),"CROSS-MECHANISM, same cell line, different lab",0.5,181114,-0.1640636031375235,0.0,-0.15804129581963416
+X3,IMR90 replicative K27ac (n=2v2) vs IMR90 OIS K27ac Tasdemir (n=2v2),"CROSS-MECHANISM, same cell line, different lab",1.0,80181,-0.0728180894957464,1.0507874241610835e-94,-0.11775745132729193
+X4,GSE106146 replicative K27ac (n=1v1) vs GM21 OIS K27ac (n=2v2),"CROSS-MECHANISM, cross-lab",0.0,111359,0.15883403278214392,0.0,0.1561109767235781
+X4,GSE106146 replicative K27ac (n=1v1) vs GM21 OIS K27ac (n=2v2),"CROSS-MECHANISM, cross-lab",0.25,101432,0.1592995476004064,0.0,0.1566186212965644
+X4,GSE106146 replicative K27ac (n=1v1) vs GM21 OIS K27ac (n=2v2),"CROSS-MECHANISM, cross-lab",0.5,77110,0.1638694927961774,0.0,0.1601960347695767
+X4,GSE106146 replicative K27ac (n=1v1) vs GM21 OIS K27ac (n=2v2),"CROSS-MECHANISM, cross-lab",1.0,30472,0.1334476972424408,4.405613319000839e-121,0.14671129745516187
+A1,WI-38 replicative ATAC vs IMR90 replicative K27ac (n=2v2),"within-replicative, CROSS-ASSAY (analog of OIS +0.607)",0.0,136068,0.20021164032701547,0.0,0.22252840127820048
+A1,WI-38 replicative ATAC vs IMR90 replicative K27ac (n=2v2),"within-replicative, CROSS-ASSAY (analog of OIS +0.607)",0.25,124851,0.20578028071660584,0.0,0.22362903907308979
+A1,WI-38 replicative ATAC vs IMR90 replicative K27ac (n=2v2),"within-replicative, CROSS-ASSAY (analog of OIS +0.607)",0.5,98315,0.2216411274814625,0.0,0.23547581470954904
+A1,WI-38 replicative ATAC vs IMR90 replicative K27ac (n=2v2),"within-replicative, CROSS-ASSAY (analog of OIS +0.607)",1.0,47583,0.28552249551510084,0.0,0.2990737059134546
+A2,WI-38 replicative ATAC vs GSE106146 replicative K27ac (n=1v1),"within-replicative, cross-assay",0.0,135253,0.2045452953328224,0.0,0.21125914185434103
+A2,WI-38 replicative ATAC vs GSE106146 replicative K27ac (n=1v1),"within-replicative, cross-assay",0.25,121842,0.20852390477623894,0.0,0.21304221956375385
+A2,WI-38 replicative ATAC vs GSE106146 replicative K27ac (n=1v1),"within-replicative, cross-assay",0.5,92401,0.225588277569292,0.0,0.223728768864884
+A2,WI-38 replicative ATAC vs GSE106146 replicative K27ac (n=1v1),"within-replicative, cross-assay",1.0,42550,0.2715226288366788,0.0,0.27266968651638374
+I1,GSE106146 IR senescence K27ac (n=2v1) vs GSE106146 replicative K27ac (n=1v1),"IR vs replicative, SAME study/pipeline (shares the proliferating control)",0.0,229297,0.4765606070950133,0.0,0.5142426272620841
+I1,GSE106146 IR senescence K27ac (n=2v1) vs GSE106146 replicative K27ac (n=1v1),"IR vs replicative, SAME study/pipeline (shares the proliferating control)",0.25,190051,0.4999530993554009,0.0,0.5232724832783257
+I1,GSE106146 IR senescence K27ac (n=2v1) vs GSE106146 replicative K27ac (n=1v1),"IR vs replicative, SAME study/pipeline (shares the proliferating control)",0.5,110699,0.564195698457816,0.0,0.5848840406940812
+I1,GSE106146 IR senescence K27ac (n=2v1) vs GSE106146 replicative K27ac (n=1v1),"IR vs replicative, SAME study/pipeline (shares the proliferating control)",1.0,17754,0.6373586937400526,0.0,0.7537445816493764
+I2,GSE106146 IR senescence K27ac (n=2v1) vs GM21 OIS K27ac (n=2v2),"IR vs OIS, cross-lab",0.0,111295,0.04832591145014625,1.5398625716630916e-58,0.07811140299740583
+I2,GSE106146 IR senescence K27ac (n=2v1) vs GM21 OIS K27ac (n=2v2),"IR vs OIS, cross-lab",0.25,101263,0.055529519715185965,5.575423060981369e-70,0.08078579415832363
+I2,GSE106146 IR senescence K27ac (n=2v1) vs GM21 OIS K27ac (n=2v2),"IR vs OIS, cross-lab",0.5,76620,0.08349433131616606,1.40239039090379e-118,0.09470611534438697
+I2,GSE106146 IR senescence K27ac (n=2v1) vs GM21 OIS K27ac (n=2v2),"IR vs OIS, cross-lab",1.0,29990,0.2055381475420348,1.8741784825137184e-283,0.18877191217064315
+I3,GSE106146 IR senescence K27ac (n=2v1) vs IMR90 replicative K27ac (n=2v2),"IR vs replicative, cross-lab",0.0,229128,0.1398866830992045,0.0,0.15573686482249896
+I3,GSE106146 IR senescence K27ac (n=2v1) vs IMR90 replicative K27ac (n=2v2),"IR vs replicative, cross-lab",0.25,201808,0.13169684213622482,0.0,0.15474527281525574
+I3,GSE106146 IR senescence K27ac (n=2v1) vs IMR90 replicative K27ac (n=2v2),"IR vs replicative, cross-lab",0.5,138174,0.11527686999154328,0.0,0.15743227236683077
+I3,GSE106146 IR senescence K27ac (n=2v1) vs IMR90 replicative K27ac (n=2v2),"IR vs replicative, cross-lab",1.0,31563,0.17210832608916815,2.201690453041724e-208,0.23511926581126558

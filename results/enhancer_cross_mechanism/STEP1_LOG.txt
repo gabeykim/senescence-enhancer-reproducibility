@@ -1,0 +1,60 @@
+====================================================================================
+CROSS-MECHANISM ENHANCER TEST -- STEP 1: harmonization + quantification
+====================================================================================
+anchor width 1000 bp | min sample support 2 | dedup midpoint distance 500 bp | anchor space hg19
+
+[1] CONSENSUS PEAK SETS (hg19)
+------------------------------------------------------------------------------------
+  GM21 ATAC  EV  pBABE_D8_Rep1        134,082 peaks
+  GM21 ATAC  EV  pBABE_D8_Rep2         88,476 peaks
+  GM21 ATAC  EV  pBABE_D32_Rep1       125,535 peaks
+  GM21 ATAC  EV  pBABE_D32_Rep2       111,866 peaks
+  GM21 ATAC  SEN RAS_D18_Rep1         145,696 peaks
+  GM21 ATAC  SEN RAS_D18_Rep2         137,361 peaks
+  GM21 ATAC  SEN RAS_D23_Rep1         134,849 peaks
+  GM21 ATAC  SEN RAS_D23_Rep2         172,542 peaks
+  GM21 K27ac EV  EV_K27ac_Rep1         80,382 peaks
+  GM21 K27ac EV  EV_K27ac_Rep2         99,615 peaks
+  GM21 K27ac SEN RAS_D18_K27ac_Rep1   132,065 peaks
+  GM21 K27ac SEN RAS_D18_K27ac_Rep2   119,821 peaks
+
+  GM21 ATAC  consensus segments (>= 2 samples): 180,099
+  GM21 K27ac consensus segments (>= 2 samples): 122,971
+  anchors after 1000 bp recentering + dedup: 237,824
+  anchors in GM21 ATAC consensus : 180,078
+  anchors in GM21 K27ac consensus: 112,244
+  anchors in BOTH (ATAC & K27ac) : 54,498
+
+[2] LIFTOVER hg19 -> hg38 (midpoints; span integrity checked separately)
+------------------------------------------------------------------------------------
+  midpoints lifted: 237,628/237,824 (99.92%)   FAILED: 196 (0.08%)
+  span-integrity check on 5,000 sampled anchors: both ends lift 4,996 (99.92%); of those, lifted span within 50 bp of 1000 bp: 4,994 (99.96%)
+  (a midpoint that lifts while the span does not is the wide-interval failure mode the
+   99.9%-for-point-variants caveat refers to; quantified here rather than assumed away)
+
+[3] WI-38 REPLICATIVE ATAC RESPONSE (GSE175533, hg38, deposited log2FC)
+------------------------------------------------------------------------------------
+  loaded 363,470 regions x 14 columns
+  usable regions with response: 363,470
+  response = PDL50_v_htert7_log2FC - mean(PDL25_v_htert2_log2FC, PDL33_v_htert4_log2FC, PDL37_v_htert5_log2FC)   (PDL45 excluded as transitional)
+  response range [-6.048, 6.117] sd 1.177
+  anchors matched into a WI-38 peak (lifted midpoint inside peak): 136,846/237,824 (57.5%)
+
+[4] SIGNAL QUANTIFICATION (bigWig mean coverage over hg19 anchors)
+------------------------------------------------------------------------------------
+  GSM6253126_pBABE_D8_REP1.bw        covered 237,823/237,824 anchors  mean 5.3015
+  GSM6253127_pBABE_D8_REP2.bw        covered 237,823/237,824 anchors  mean 6.9251
+  GSM6253122_pBABE_D32_REP1.bw       covered 237,823/237,824 anchors  mean 5.1962
+  GSM6253123_pBABE_D32_REP2.bw       covered 237,823/237,824 anchors  mean 5.6819
+  GSM6253132_RAS_D18_REP1.bw         covered 237,823/237,824 anchors  mean 4.7834
+  GSM6253133_RAS_D18_REP2.bw         covered 237,823/237,824 anchors  mean 4.8843
+  GSM6253134_RAS_D23_REP1.bw         covered 237,823/237,824 anchors  mean 5.6329
+  GSM6253135_RAS_D23_REP2.bw         covered 237,823/237,824 anchors  mean 6.9072
+  GSM6235098_EV_K27ac_1_dedup_blacklisted_merge.bw covered 237,823/237,824 anchors  mean 3.8330
+  GSM6235099_EV_K27ac_2_dedup_blacklisted_merge.bw covered 237,823/237,824 anchors  mean 4.0553
+  GSM6235110_RAS_D18_K27ac_1_dedup_blacklisted_merge.bw covered 237,823/237,824 anchors  mean 4.7672
+  GSM6235111_RAS_D18_K27ac_2_dedup_blacklisted_merge.bw covered 237,823/237,824 anchors  mean 4.1587
+  GSM1915113_H3K27ac_proliferating.bigWig covered 233,444/237,824 anchors  mean 2.1114
+  GSM2098176_H3K27ac_proliferating_replicate.bigWig covered 216,018/237,824 anchors  mean 3.7107
+  GSM1915115_H3K27ac_senescent..bigWig covered 221,038/237,824 anchors  mean 2.2757
+  GSM2098178_H3K27ac_senescent_replicate.bigWig covered 233,416/237,824 anchors  mean 1.9045

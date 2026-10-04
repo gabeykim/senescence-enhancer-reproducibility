@@ -1,0 +1,70 @@
+control gate passed; running probe
+head + trunk loaded
+trunk batch size 4 (peak 22.29 GB)
+
+==============================================================================
+(c) DYNAMIC RANGE AND SIGN AGREEMENT
+==============================================================================
+  predicted: sd 0.5138  range [-2.2408, +2.2127]  IQR 0.7620
+  measured IMR90 (n=2v2): sd 0.9614  range [-3.1765, +4.8372]
+  predicted sd / measured sd = 0.5345
+  predicted percentiles: 0%=-2.241, 1%=-1.003, 5%=-0.728, 25%=-0.325, 50%=+0.064, 75%=+0.437, 95%=+0.925, 99%=+1.230, 100%=+2.213
+  delta required to move median -> 95th percentile: +0.8613
+  sign agreement on the 50 most responsive held-out regions: 50/50 (100%)
+  sign agreement on the top 20: 20/20 (100%)
+
+==============================================================================
+(a) MOTIF-INSERTION DOSE RESPONSE (design_anchor coordinates)
+==============================================================================
+  neutral background context: chr1:265,888 (design_anchor; measured IMR90 +0.0000)
+
+  motif        variant     rho(pred,k)   slope/copy  delta k0->8
+  NFKB_RELA    real              0.846      0.09095      0.66537
+  NFKB_RELA    scrambled         0.621      0.01403      0.12504
+  CEBPB        real              0.611      0.05796      0.46391
+  CEBPB        scrambled         0.248      0.01110      0.06829
+  AP1_FOSJUN   real             -0.375     -0.06013     -0.46433
+  AP1_FOSJUN   scrambled         0.059     -0.00065     -0.01594
+  ETS1         real              0.306      0.01683      0.11748
+  ETS1         scrambled        -0.150     -0.00882     -0.11317
+
+  THE NUMBER THAT MATTERS
+    largest real-motif delta at saturation (k=8): +0.66537
+    prediction sd across held-out regions        : 0.51385
+    delta required, median -> 95th percentile    : +0.86128
+    lever length = achieved / required           : 0.773x
+    (expression model for comparison: +0.132 achieved vs ~+0.65 required = 0.20x)
+
+==============================================================================
+(b) ISM (500 bp around design_anchor) + JASPAR PWM enrichment
+==============================================================================
+  NFKB_RELA: MA0107.1 (RELA) length 10
+  CEBPB: MA0466.2 (CEBPB) length 10
+  AP1_FOSJUN: MA0099.3 (FOS::JUN) length 10
+  ETS1: MA0098.3 (ETS1) length 10
+  regions: top 20 held-out by |measured IMR90 response| with a design anchor
+    chr7:65406557          wt +1.2141 max|d| 0.17087 conc 0.412 motif_bases 155 enr 2.692
+    chr10:36535418         wt +1.2063 max|d| 0.43247 conc 0.408 motif_bases 153 enr 1.840
+    chr3:67082938          wt +1.3328 max|d| 0.16759 conc 0.387 motif_bases 131 enr 1.705
+    chr17:47763681         wt +0.9814 max|d| 0.40852 conc 0.470 motif_bases  85 enr 3.985
+    chr11:124601677        wt +0.6462 max|d| 0.25920 conc 0.318 motif_bases 116 enr 0.893
+    chr17:8935073          wt +1.5805 max|d| 0.33326 conc 0.392 motif_bases 168 enr 1.119
+    chr20:7853384          wt +0.7985 max|d| 0.25488 conc 0.283 motif_bases 142 enr 1.149
+    chr16:77548513         wt +0.9121 max|d| 0.22834 conc 0.436 motif_bases 161 enr 2.481
+    chr19:52099508         wt +1.4107 max|d| 0.26986 conc 0.471 motif_bases 160 enr 2.011
+    chr10:36534359         wt +1.1482 max|d| 0.40561 conc 0.401 motif_bases 153 enr 2.054
+    chr12:90280497         wt +1.1707 max|d| 0.18966 conc 0.357 motif_bases 131 enr 1.720
+    chr6:141550134         wt +0.7976 max|d| 0.25032 conc 0.314 motif_bases 166 enr 1.775
+    chr5:67306778          wt +0.7668 max|d| 0.36678 conc 0.545 motif_bases 115 enr 4.362
+    chr16:51898569         wt +1.0721 max|d| 0.22437 conc 0.357 motif_bases 191 enr 1.399
+    chr3:67083808          wt +1.2976 max|d| 0.16601 conc 0.376 motif_bases 141 enr 1.493
+    chr7:41511162          wt +0.9340 max|d| 0.33108 conc 0.311 motif_bases 216 enr 1.661
+    chr2:112885504         wt +0.8300 max|d| 0.12946 conc 0.345 motif_bases 160 enr 1.805
+    chr13:64552485         wt +0.8731 max|d| 0.24119 conc 0.364 motif_bases 148 enr 1.770
+  [time budget reached after 18 regions]
+
+  regions run: 18
+  windows with >=1 PWM match: 18/18
+  top-10% attribution concentration: mean 0.386 (0.10 == perfectly diffuse; expression model gave 0.291)
+  PWM enrichment (in-motif / out-motif importance): mean 1.995 +/- 0.908 over n=18, p vs 1.0 = 0.0002
+  mean |delta| per single mutation: 0.024387 (4.75% of prediction sd)

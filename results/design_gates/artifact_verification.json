@@ -1,0 +1,32 @@
+{
+  "fwd_shape": [
+    111671,
+    1920
+  ],
+  "rc_shape": [
+    111671,
+    1920
+  ],
+  "fwd_dtype": "float32",
+  "rc_dtype": "float32",
+  "nonfinite_fwd": 0,
+  "nonfinite_rc": 0,
+  "all_zero_rows_fwd": 0,
+  "all_zero_rows_rc": 0,
+  "rows_where_fwd_differs_from_rc": 111671,
+  "n_rows": 111671,
+  "mean_abs_fwd_minus_rc": 0.0998871516506449,
+  "max_abs_value": 45.76206588745117,
+  "checkpoint_keys": {
+    "channel_transform.conv.layer.weight": [
+      1,
+      1920,
+      1
+    ],
+    "channel_transform.conv.layer.bias": [
+      1
+    ]
+  },
+  "checkpoint_finite": true,
+  "checkpoint_weight_norm": 1.1135786583487515
+}

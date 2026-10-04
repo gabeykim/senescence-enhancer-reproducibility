@@ -1,0 +1,17 @@
+{
+  "gm21_atac_consensus_segments": 180099,
+  "gm21_k27ac_consensus_segments": 122971,
+  "n_anchors": 237824,
+  "anchors_atac": 180078,
+  "anchors_k27ac": 112244,
+  "anchors_both": 54498,
+  "liftover_midpoint_success_pct": 99.91758611410118,
+  "liftover_midpoint_failed": 196,
+  "span_integrity": {
+    "sampled": 5000,
+    "both_ends_lift": 4996,
+    "span_preserved": 4994,
+    "pct_span_preserved": 99.95996797437951
+  },
+  "anchors_matched_wi38": 136846
+}

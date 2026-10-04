@@ -1,0 +1,20 @@
+{
+  "active_vs_open": {
+    "0.5": {
+      "n_diff_atac": 20515,
+      "n_also_diff_k27ac": 13330,
+      "frac_also_diff": 0.6497684621009018,
+      "n_same_direction": 12429,
+      "frac_same_direction": 0.605849378503534
+    },
+    "1.0": {
+      "n_diff_atac": 5339,
+      "n_also_diff_k27ac": 3376,
+      "frac_also_diff": 0.6323281513392021,
+      "n_same_direction": 3373,
+      "frac_same_direction": 0.6317662483611163
+    }
+  },
+  "primary_threshold": 0.5,
+  "pseudocount": 0.1
+}

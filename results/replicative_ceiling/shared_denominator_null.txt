@@ -1,0 +1,4 @@
+I1 IR vs replicative (shared denom)          rho +0.5642  n=110,699
+NULL unrelated numerator vs replicative      rho +0.1538  n=147,534
+NULL 2 BJ Young vs replicative               rho +0.0825  n=177,007
+NULL 3 two unrelated numerators              rho +0.5231  n=180,422

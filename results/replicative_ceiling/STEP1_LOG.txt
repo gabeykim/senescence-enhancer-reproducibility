@@ -1,0 +1,25 @@
+====================================================================================
+WITHIN-REPLICATIVE CEILING TEST -- quantification
+====================================================================================
+
+reusing prior anchor set: 237,824 anchors (1 kb, hg19)
+
+[1] LIFT ANCHORS hg19 -> hg18 (GSE146585 is hg18)
+------------------------------------------------------------------------------------
+  midpoints lifted hg19->hg18: 237,512/237,824 (99.87%)  FAILED 312 (0.13%)
+  span integrity on 5,000 sampled anchors: both ends lift 4,995 (99.90%); span within 50 bp of 1 kb: 4,995 (100.00%)
+
+[2] BIGWIG QUANTIFICATION (each file read in its OWN build)
+------------------------------------------------------------------------------------
+  IMR90rep_Young_R1    hg18  GSE146567_IMR90_replicative    covered 232,067/237,824  mean 1.2104
+  IMR90rep_Young_R2    hg18  GSE146567_IMR90_replicative    covered 232,159/237,824  mean 1.3088
+  IMR90rep_Sen_R1      hg18  GSE146567_IMR90_replicative    covered 234,132/237,824  mean 1.8271
+  IMR90rep_Sen_R2      hg18  GSE146567_IMR90_replicative    covered 232,630/237,824  mean 1.7684
+  BJrep_Young          hg18  GSE146559_BJ_replicative       covered 214,651/237,824  mean 3.3136
+  BJrep_Sen            hg18  GSE146559_BJ_replicative       covered 194,048/237,824  mean 3.9688
+  IMR90ois_GFP         hg18  GSE146563_IMR90_OIS            covered 184,454/237,824  mean 3.0793
+  IMR90ois_RAS         hg18  GSE146563_IMR90_OIS            covered 197,733/237,824  mean 3.7377
+  Sen2019_Pro          hg19  GSE106146_replicative          covered 232,864/237,824  mean 1.0040
+  Sen2019_Sen          hg19  GSE106146_replicative          covered 233,805/237,824  mean 0.9146
+  Sen2019_IR_R1        hg19  GSE106146_IR                   covered 225,522/237,824  mean 1.8535
+  Sen2019_IR_R2        hg19  GSE106146_IR                   covered 226,108/237,824  mean 1.8582

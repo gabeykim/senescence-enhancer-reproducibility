@@ -1,0 +1,49 @@
+====================================================================================
+OIS ENHANCER TRAINING SET -- STEP 1: regions + quantification
+====================================================================================
+region width 1000 bp (summit-centred) | summit cluster 250 bp | min support 2/4
+
+[1] CONSENSUS H3K27ac REGIONS from GSE205898 narrowPeaks (hg19)
+------------------------------------------------------------------------------------
+  EV_R1     80,382 peak summits
+  EV_R2     99,615 peak summits
+  RAS_R1   132,065 peak summits
+  RAS_R2   119,821 peak summits
+
+  consensus regions (summit supported by >= 2 of 4 samples): 112,099
+  after dropping regions with negative start: 112,099
+
+[2] GM21 ATAC SUMMITS as 200 bp DESIGN ANCHORS
+------------------------------------------------------------------------------------
+  H3K27ac marks the nucleosomes flanking an element and is depleted over the
+  nucleosome-free region where TFs bind. The K27ac summit is the right place to
+  MEASURE but the wrong place to PLACE 200 bp of designed sequence. The nearest ATAC
+  summit is recorded per region as the design coordinate.
+  read 25 GM21 ATAC narrowPeak files -> 3,380,335 summits
+  regions with an ATAC summit inside the 1000 bp window: 92,616/112,099 (82.6%)
+  median distance K27ac summit -> nearest ATAC summit: 245 bp
+
+[3] LIFTOVER hg19 -> hg38 (for Borzoi intervals; signal stays in hg19)
+------------------------------------------------------------------------------------
+  summits lifted: 112,078/112,099 (99.98%)  FAILED 21 (0.02%)
+
+[4] SIGNAL QUANTIFICATION (all bigWigs are hg19; read in hg19)
+------------------------------------------------------------------------------------
+  GM21_K27_EV_R1       GM21_K27   EV   covered 112,099/112,099  mean 6.4294
+  GM21_K27_EV_R2       GM21_K27   EV   covered 112,099/112,099  mean 6.8532
+  GM21_K27_RAS_R1      GM21_K27   RAS  covered 112,099/112,099  mean 7.9991
+  GM21_K27_RAS_R2      GM21_K27   RAS  covered 112,099/112,099  mean 6.6396
+  IMR90_K27_PRO_R1     IMR90_K27  PRO  covered 111,240/112,099  mean 3.4983
+  IMR90_K27_PRO_R2     IMR90_K27  PRO  covered 109,321/112,099  mean 6.0687
+  IMR90_K27_SEN_R1     IMR90_K27  SEN  covered 110,202/112,099  mean 3.1136
+  IMR90_K27_SEN_R2     IMR90_K27  SEN  covered 111,026/112,099  mean 3.0416
+  IMR90_K27_QUI_R1     IMR90_K27  QUI  covered 111,195/112,099  mean 3.3261
+  IMR90_K27_QUI_R2     IMR90_K27  QUI  covered 110,447/112,099  mean 4.5901
+  GM21_ATAC_EV_R1      GM21_ATAC  EV   covered 112,099/112,099  mean 7.7189
+  GM21_ATAC_EV_R2      GM21_ATAC  EV   covered 112,099/112,099  mean 11.0621
+  GM21_ATAC_EV_R3      GM21_ATAC  EV   covered 112,099/112,099  mean 7.8479
+  GM21_ATAC_EV_R4      GM21_ATAC  EV   covered 112,099/112,099  mean 8.8218
+  GM21_ATAC_RAS_R1     GM21_ATAC  RAS  covered 112,099/112,099  mean 6.9144
+  GM21_ATAC_RAS_R2     GM21_ATAC  RAS  covered 112,099/112,099  mean 7.0690
+  GM21_ATAC_RAS_R3     GM21_ATAC  RAS  covered 112,099/112,099  mean 8.2742
+  GM21_ATAC_RAS_R4     GM21_ATAC  RAS  covered 112,099/112,099  mean 10.3927

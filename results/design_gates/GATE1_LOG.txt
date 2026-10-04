@@ -1,0 +1,82 @@
+head + trunk loaded; trunk batch size 4
+neutral context chr1:265,888  window_start=3,744  cassette at [262044, 262244)
+23 arms (22 motif arms x 2 variants + 1 empty baseline)
+450 sequences to score (10 seeds x 45 conditions)
+  scored 50/450  (52s elapsed, 1.03s/seq, eta 6.9 min)
+  scored 100/450  (75s elapsed, 0.75s/seq, eta 4.4 min)
+  scored 150/450  (98s elapsed, 0.65s/seq, eta 3.3 min)
+  scored 200/450  (121s elapsed, 0.60s/seq, eta 2.5 min)
+  scored 250/450  (144s elapsed, 0.58s/seq, eta 1.9 min)
+  scored 300/450  (166s elapsed, 0.55s/seq, eta 1.4 min)
+  scored 350/450  (189s elapsed, 0.54s/seq, eta 0.9 min)
+  scored 400/450  (212s elapsed, 0.53s/seq, eta 0.4 min)
+  scored 450/450  (235s elapsed, 0.52s/seq, eta 0.0 min)
+
+==============================================================================================================
+GATE 1 -- ADJUSTED DELTA BY CONDITION (adjusted = real - scrambled, paired within seed)
+==============================================================================================================
+  K condition                    arrange        bp       raw     scram       adj   +-sem         p  frac of 0.861
+  6 CEBPB                        single         48   +0.2455   +0.0579   +0.1877  0.0480  3.57e-03          0.218
+  6 ETS1                         single         42   +0.2114   -0.0163   +0.2277  0.0630  5.63e-03          0.264
+  6 NFKB_RELA                    single         60   +0.5215   +0.1019   +0.4196  0.0221  1.46e-08          0.487
+  6 CEBPB+ETS1                   clustered      45   +0.1417   +0.0156   +0.1261  0.0556  4.96e-02          0.146
+  6 CEBPB+ETS1                   interleaved    45   +0.1240   +0.0492   +0.0748  0.0640  2.73e-01          0.087
+  6 NFKB_RELA+CEBPB              clustered      54   +0.3761   +0.0592   +0.3169  0.0465  7.71e-05          0.368
+  6 NFKB_RELA+CEBPB              interleaved    54   +0.3300   +0.0692   +0.2608  0.0545  9.88e-04          0.303
+  6 NFKB_RELA+ETS1               clustered      51   +0.4243   +0.0324   +0.3919  0.0470  1.59e-05          0.455
+  6 NFKB_RELA+ETS1               interleaved    51   +0.4261   +0.0626   +0.3634  0.0504  5.00e-05          0.422
+  6 NFKB_RELA+CEBPB+ETS1         clustered      50   +0.3410   +0.0377   +0.3033  0.0571  4.88e-04          0.352
+  6 NFKB_RELA+CEBPB+ETS1         interleaved    50   +0.2119   +0.0553   +0.1566  0.0779  7.52e-02          0.182
+ 12 CEBPB                        single         96   +0.6911   +0.1074   +0.5837  0.0359  5.62e-08          0.678
+ 12 ETS1                         single         84   +0.1562   -0.0585   +0.2147  0.0333  1.17e-04          0.249
+ 12 NFKB_RELA                    single        120   +0.7420   +0.1402   +0.6018  0.0490  6.29e-07          0.699
+ 12 CEBPB+ETS1                   clustered      90   +0.4515   +0.0299   +0.4216  0.0653  1.17e-04          0.490
+ 12 CEBPB+ETS1                   interleaved    90   +0.2898   -0.0026   +0.2924  0.0838  6.82e-03          0.339
+ 12 NFKB_RELA+CEBPB              clustered     108   +0.4481   +0.1054   +0.3427  0.0729  1.11e-03          0.398
+ 12 NFKB_RELA+CEBPB              interleaved   108   +0.2023   +0.1536   +0.0487  0.0413  2.69e-01          0.057
+ 12 NFKB_RELA+ETS1               clustered     102   +0.7403   +0.0746   +0.6657  0.0487  2.54e-07          0.773
+ 12 NFKB_RELA+ETS1               interleaved   102   +0.5584   +0.0747   +0.4838  0.0349  2.21e-07          0.562
+ 12 NFKB_RELA+CEBPB+ETS1         clustered     100   +0.4717   +0.0829   +0.3889  0.0744  5.45e-04          0.452
+ 12 NFKB_RELA+CEBPB+ETS1         interleaved   100   +0.3575   +0.1113   +0.2462  0.0405  1.83e-04          0.286
+
+==============================================================================================================
+ADDITIVITY TEST -- observed combination vs the sum of its constituent singles
+(expected = sum over members of single-motif adjusted delta scaled to that member's copy share)
+==============================================================================================================
+  K condition                    arrange        observed   expected   obs-exp  obs/exp  frac req
+  6 CEBPB+ETS1                   clustered       +0.1261    +0.2077   -0.0815    0.607     0.146
+  6 CEBPB+ETS1                   interleaved     +0.0748    +0.2077   -0.1329    0.360     0.087
+  6 NFKB_RELA+CEBPB              clustered       +0.3169    +0.3037   +0.0133    1.044     0.368
+  6 NFKB_RELA+CEBPB              interleaved     +0.2608    +0.3037   -0.0428    0.859     0.303
+  6 NFKB_RELA+ETS1               clustered       +0.3919    +0.3237   +0.0682    1.211     0.455
+  6 NFKB_RELA+ETS1               interleaved     +0.3634    +0.3237   +0.0398    1.123     0.422
+  6 NFKB_RELA+CEBPB+ETS1         clustered       +0.3033    +0.2783   +0.0250    1.090     0.352
+  6 NFKB_RELA+CEBPB+ETS1         interleaved     +0.1566    +0.2783   -0.1217    0.563     0.182
+ 12 CEBPB+ETS1                   clustered       +0.4216    +0.3992   +0.0224    1.056     0.490
+ 12 CEBPB+ETS1                   interleaved     +0.2924    +0.3992   -0.1068    0.733     0.339
+ 12 NFKB_RELA+CEBPB              clustered       +0.3427    +0.5927   -0.2501    0.578     0.398
+ 12 NFKB_RELA+CEBPB              interleaved     +0.0487    +0.5927   -0.5440    0.082     0.057
+ 12 NFKB_RELA+ETS1               clustered       +0.6657    +0.4082   +0.2574    1.631     0.773
+ 12 NFKB_RELA+ETS1               interleaved     +0.4838    +0.4082   +0.0755    1.185     0.562
+ 12 NFKB_RELA+CEBPB+ETS1         clustered       +0.3889    +0.4667   -0.0778    0.833     0.452
+ 12 NFKB_RELA+CEBPB+ETS1         interleaved     +0.2462    +0.4667   -0.2205    0.528     0.286
+
+==============================================================================================================
+SPACING -- interleaved vs clustered, paired within seed
+==============================================================================================================
+  K condition                     interleaved   clustered      diff   +-sem         p
+  6 CEBPB+ETS1                        +0.0748     +0.1261   -0.0514  0.0456     0.289
+  6 NFKB_RELA+CEBPB                   +0.2608     +0.3169   -0.0561  0.0570     0.351
+  6 NFKB_RELA+CEBPB+ETS1              +0.1566     +0.3033   -0.1467  0.0973     0.166
+  6 NFKB_RELA+ETS1                    +0.3634     +0.3919   -0.0285  0.0366     0.456
+ 12 CEBPB+ETS1                        +0.2924     +0.4216   -0.1292  0.0562     0.047
+ 12 NFKB_RELA+CEBPB                   +0.0487     +0.3427   -0.2940  0.0548     0.000
+ 12 NFKB_RELA+CEBPB+ETS1              +0.2462     +0.3889   -0.1427  0.0791     0.105
+ 12 NFKB_RELA+ETS1                    +0.4838     +0.6657   -0.1819  0.0545     0.009
+
+==============================================================================================================
+  best condition overall : NFKB_RELA+ETS1 (K=12, clustered)
+  adjusted delta         : +0.6657 +- 0.0487 (n=10 seeds)
+  required (median->p95) : +0.8613
+  fraction of required   : 0.773x
+==============================================================================================================

@@ -1,0 +1,59 @@
+head + trunk loaded (batch 4); context chr1:265,888
+210 sequences (10 seeds x 21 conditions)
+  scored 50/210  (31s, 0.61s/seq)
+  scored 100/210  (53s, 0.53s/seq)
+  scored 150/210  (76s, 0.51s/seq)
+  scored 200/210  (99s, 0.50s/seq)
+  scored 210/210  (104s, 0.49s/seq)
+
+====================================================================================================
+DOSE CEILING -- adjusted delta vs total inserted copy number
+====================================================================================================
+condition                arrange       K   bp   adjusted   +-sem  frac of 0.861
+CEBPB                    single        6   48    +0.1877  0.0480          0.218
+CEBPB                    single       12   96    +0.5837  0.0359          0.678
+CEBPB                    single       18  144    +0.3585  0.0427          0.416
+CEBPB                    single       20  160    +0.2576  0.0329          0.299
+ETS1                     single        6   42    +0.2277  0.0630          0.264
+ETS1                     single       12   84    +0.2147  0.0333          0.249
+ETS1                     single       18  126    +0.1541  0.0249          0.179
+ETS1                     single       20  140    +0.1022  0.0184          0.119
+NFKB_RELA                single        6   60    +0.4196  0.0221          0.487
+NFKB_RELA                single       12  120    +0.6018  0.0490          0.699
+NFKB_RELA                single       18  180    +0.5686  0.0198          0.660
+NFKB_RELA                single       20  200    +0.3884  0.0183          0.451
+NFKB_RELA+CEBPB+ETS1     clustered     6   50    +0.3033  0.0571          0.352
+NFKB_RELA+CEBPB+ETS1     clustered    12  100    +0.3889  0.0744          0.452
+NFKB_RELA+CEBPB+ETS1     clustered    18  150    +0.1455  0.0748          0.169
+NFKB_RELA+CEBPB+ETS1     clustered    20  164    +0.2753  0.0673          0.320
+NFKB_RELA+ETS1           clustered     6   51    +0.3919  0.0470          0.455
+NFKB_RELA+ETS1           clustered    12  102    +0.6657  0.0487          0.773
+NFKB_RELA+ETS1           clustered    18  153    +0.5444  0.0294          0.632
+NFKB_RELA+ETS1           clustered    20  170    +0.3620  0.0402          0.420
+
+====================================================================================================
+SATURATION -- marginal gain per added copy, between consecutive loads
+====================================================================================================
+  CEBPB                    single      K  6->12  +0.1877 -> +0.5837   gain/copy +0.06600
+  CEBPB                    single      K 12->18  +0.5837 -> +0.3585   gain/copy -0.03754
+  CEBPB                    single      K 18->20  +0.3585 -> +0.2576   gain/copy -0.05044
+  ETS1                     single      K  6->12  +0.2277 -> +0.2147   gain/copy -0.00217
+  ETS1                     single      K 12->18  +0.2147 -> +0.1541   gain/copy -0.01010
+  ETS1                     single      K 18->20  +0.1541 -> +0.1022   gain/copy -0.02592
+  NFKB_RELA                single      K  6->12  +0.4196 -> +0.6018   gain/copy +0.03036
+  NFKB_RELA                single      K 12->18  +0.6018 -> +0.5686   gain/copy -0.00553
+  NFKB_RELA                single      K 18->20  +0.5686 -> +0.3884   gain/copy -0.09010
+  NFKB_RELA+CEBPB+ETS1     clustered   K  6->12  +0.3033 -> +0.3889   gain/copy +0.01426
+  NFKB_RELA+CEBPB+ETS1     clustered   K 12->18  +0.3889 -> +0.1455   gain/copy -0.04056
+  NFKB_RELA+CEBPB+ETS1     clustered   K 18->20  +0.1455 -> +0.2753   gain/copy +0.06490
+  NFKB_RELA+ETS1           clustered   K  6->12  +0.3919 -> +0.6657   gain/copy +0.04562
+  NFKB_RELA+ETS1           clustered   K 12->18  +0.6657 -> +0.5444   gain/copy -0.02021
+  NFKB_RELA+ETS1           clustered   K 18->20  +0.5444 -> +0.3620   gain/copy -0.09120
+
+====================================================================================================
+  best across all loads : NFKB_RELA+ETS1 (clustered, K=12)
+  adjusted delta        : +0.6657 +- 0.0487 (n=10)
+  required              : +0.8613
+  fraction of required  : 0.773x
+  shortfall             : +0.1956
+====================================================================================================

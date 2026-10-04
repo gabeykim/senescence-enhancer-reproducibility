@@ -1,0 +1,19 @@
+{
+  "windows_sanitized": 33,
+  "chars_replaced": 98,
+  "chars_seen": {
+    "R": 24,
+    "Y": 41,
+    "B": 4,
+    "M": 10,
+    "K": 6,
+    "S": 4,
+    "W": 9
+  },
+  "bases_scanned": 4434952192,
+  "cache_hours": 1.163281567758984,
+  "peak_gpu_gb": 3.818084352,
+  "n_windows": 8459,
+  "n_regions_cached": 111671,
+  "all_zero_rows": 0
+}

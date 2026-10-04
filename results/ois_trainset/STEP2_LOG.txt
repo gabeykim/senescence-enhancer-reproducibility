@@ -1,0 +1,114 @@
+====================================================================================
+OIS ENHANCER TRAINING SET -- STEP 2
+====================================================================================
+regions 112,099 | signal columns 18
+
+[1] TARGETS (log2 fold change, per dataset, own arms)
+------------------------------------------------------------------------------------
+  GM21_RAS_vs_EV         n=2 RAS vs 2 EV    n=112,099  mean +0.0567  sd 0.7607  range [-3.26, +3.29]
+  IMR90_SEN_vs_PRO       n=2 SEN vs 2 PRO   n=111,063  mean +0.1282  sd 0.9652  range [-3.18, +4.84]
+  IMR90_SEN_vs_QUI       n=2 SEN vs 2 QUI   n=111,066  mean +0.1170  sd 1.0668  range [-3.88, +5.19]
+  GM21_ATAC_RAS_vs_EV    n=4 RAS vs 4 EV    n=112,099  mean +0.1756  sd 0.5567  range [-2.77, +3.32]
+
+  supplementary: IMR90 QUI vs PRO  mean +0.0111 sd 0.4598
+  Spearman(SEN_vs_PRO, SEN_vs_QUI) = +0.8800   Spearman(SEN_vs_PRO, QUI_vs_PRO) = +0.0355
+  A senescence-specific programme should give a HIGH first value (the senescence
+  response is similar whichever arrested control is used) and a LOW second value
+  (quiescence is not just a weaker senescence).
+
+[2] HARMONIZATION CHECK -- does GM21 vs IMR90 reproduce the prior +0.653?
+------------------------------------------------------------------------------------
+  |lfc|>=0.0  n=111,063 Spearman +0.6199  Pearson +0.6446
+  |lfc|>=0.25 n=103,276 Spearman +0.6240  Pearson +0.6455
+  |lfc|>=0.5  n=83,716  Spearman +0.6365  Pearson +0.6559  <-- comparable to prior +0.653
+  |lfc|>=1.0  n=39,576  Spearman +0.6573  Pearson +0.7010
+
+  prior test: +0.653 (1 kb midpoint-centred anchors from combined ATAC+K27ac consensus)
+  this build: +0.637 (1 kb SUMMIT-centred anchors from K27ac peaks only)
+  difference: -0.016
+  The two region definitions are not identical -- this build centres on H3K27ac
+  summits and drops ATAC-only regions -- so exact equality is not expected. What
+  matters is that the cross-study OIS agreement is reproduced at the same order.
+
+[3] BATCH CHECK
+------------------------------------------------------------------------------------
+  matrix 108,174 regions x 10 H3K27ac samples
+  raw pooled           PC1  var  43.8%  R2(study) 0.448  R2(status) 0.777  -> STATUS dominates
+  raw pooled           PC2  var  25.9%  R2(study) 0.483  R2(status) 0.338  -> STUDY dominates
+  raw pooled           PC3  var  15.0%  R2(study) 0.043  R2(status) 0.071  -> STATUS dominates
+
+  per-study centered   PC1  var  52.8%  R2(study) 0.000  R2(status) 0.908  -> STATUS dominates
+  per-study centered   PC2  var  23.4%  R2(study) 0.000  R2(status) 0.093  -> STATUS dominates
+  per-study centered   PC3  var   7.1%  R2(study) 0.000  R2(status) 0.289  -> STATUS dominates
+
+  TRADEOFF (batch correction vs the cross-study holdout):
+    The split is cross-study BY DESIGN, so study and validation-fold are perfectly
+    confounded. Any correction fitted across both studies would use validation-set
+    information at training time and would also remove exactly the between-study
+    variation the holdout exists to test.
+  RECOMMENDATION: do NOT apply a pooled batch correction. The targets are already
+    per-study log2 fold changes -- within-study contrasts in which the study-level
+    offset cancels by construction. That is the correct 'correction' here: it is
+    computed inside each study independently and never mixes them. The raw-signal PCA
+    above is reported only to show what pooling raw coverage WOULD have done.
+  figure -> /Users/gabeykim/Downloads/Senescence/output/ois_enhancer_trainset/figures/ois_batch_pca.png
+
+[4] ACCESSIBILITY FILTER (optional, DEFAULT OFF)
+------------------------------------------------------------------------------------
+  |log2FC| >= 0.5: 25,082/57,169 (43.9%) of differential-H3K27ac regions are also differential in ATAC; 40.8% agree in direction
+  |log2FC| >= 1.0: 5,911/20,765 (28.5%) of differential-H3K27ac regions are also differential in ATAC; 28.5% agree in direction
+  regions passing the ATAC filter (|lfc|>=0.5): 39,334/112,099
+  DEFAULT IS OFF -- the flag is stored in .var['passes_atac_filter'] so a training
+  run can subset without a rebuild.
+
+[5] BORZOI INTERVALS (hg38, 524,288 bp centred on each region)
+------------------------------------------------------------------------------------
+  regions with a valid 524 kb window: 111,677/112,099
+    lost -- liftover failed        : 21
+    lost -- window before chrom 0  : 154
+    lost -- window past chrom end  : 247
+
+[6] DISTINCT 524 kb WINDOWS REQUIRED (this sets the GPU budget)
+------------------------------------------------------------------------------------
+  Borzoi predicts a 196,608 bp span from a 524,288 bp input, so one
+  forward pass can serve every region falling inside that central span. Minimum
+  windows computed by greedy interval covering per chromosome (measured, not
+  estimated).
+  regions: 111,677
+  distinct windows needed: 8,432
+  compression: 13.2x fewer forward passes
+  at the measured 0.2018 s/forward-pass (fwd only): 0.47 h; with reverse-complement too: 0.95 h
+  naive one-window-per-region would cost 12.5 h -- the covering saves 11.6 h
+
+[7] ANNDATA
+------------------------------------------------------------------------------------
+  dropping 6 regions in 3 groups where distinct hg19 summits lift to one hg38 coordinate (segmental duplications)
+  wrote ois_enhancer_trainset.h5ad  shape (3, 111671) (n_tasks, n_intervals)
+  X dtype float32  range [-3.879, 5.191]
+  split counts: {'train': 100070, 'test': 11601}
+  interval widths distinct: {np.int64(524288)}
+
+[8] SANITY CHECKS
+------------------------------------------------------------------------------------
+
+  CDKN2A: 59 regions (promoter<=2kb 8, distal 51)
+    promoter  GM21 -0.919 | IMR90 -1.341 | IMR90 -1.419
+    distal    GM21 +0.172 | IMR90 +0.421 | IMR90 +0.150
+
+  CDKN1A: 37 regions (promoter<=2kb 9, distal 28)
+    promoter  GM21 +0.219 | IMR90 -0.042 | IMR90 -0.264
+    distal    GM21 +0.100 | IMR90 +0.198 | IMR90 +0.247
+
+  SASP loci (regions within 50 kb of the gene body, hg19):
+    IL6    n= 12  GM21 mean +0.280 max +1.115 | IMR90 mean +0.238 max +1.331 | IMR90 mean +0.200 max +1.330
+    CXCL8  n= 17  GM21 mean +1.093 max +2.144 | IMR90 mean +2.528 max +3.823 | IMR90 mean +2.552 max +3.430
+    IL1A   n= 34  GM21 mean +0.718 max +2.682 | IMR90 mean +1.581 max +4.071 | IMR90 mean +1.587 max +4.241
+    MMP3   n= 24  GM21 mean +1.081 max +1.974 | IMR90 mean +2.278 max +3.816 | IMR90 mean +2.272 max +4.079
+
+  Split integrity:
+    chr9/chr6 regions marked 'test': 11,601; none are used for training.
+    training task rows: ['GM21_RAS_vs_EV']
+    validation task rows: ['IMR90_SEN_vs_PRO', 'IMR90_SEN_vs_QUI']
+    The cross-study holdout is on DATA SOURCE; the same regions appear under both
+    training and validation tasks by design, so region-level overlap is expected and
+    is not leakage. Sample-level overlap between studies: none (disjoint GSMs).
