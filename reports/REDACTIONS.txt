@@ -1,0 +1,26 @@
+Redactions applied when copying the working reports into this repository
+=======================================================================
+
+Only ephemeral rented-GPU host addresses were replaced, with the literal
+string <pod-address-redacted>. No scientific content was altered.
+All pods were terminated in 2026-08; the addresses were reassignable and
+carried no credential. Listed here so the redaction is not silent.
+
+REPORT_borzoi_grelu_infrastructure.md  L56  213.173.110.43:16444
+REPORT_borzoi_grelu_infrastructure.md  L56  213.173.98.95:49080
+REPORT_borzoi_grelu_infrastructure.md  L57  213.173.111.15:24629
+REPORT_borzoi_grelu_infrastructure.md  L58  213.173.110.155:16777
+REPORT_borzoi_grelu_infrastructure.md  L67  root@213.173.110.43:16444
+REPORT_borzoi_grelu_infrastructure.md  L327  root@213.173.98.95:49080
+REPORT_borzoi_grelu_infrastructure.md  L619  root@213.173.111.15:24629
+REPORT_borzoi_grelu_infrastructure.md  L860  root@213.173.110.155:16777
+REPORT_borzoi_grelu_infrastructure.md  L975  root@213.173.102.85:19752
+REPORT_borzoi_grelu_infrastructure.md  L1171  213.173.102.85:19752
+REPORT_borzoi_grelu_infrastructure.md  L1175  213.173.110.155:16777
+REPORT_borzoi_grelu_infrastructure.md  L1176  213.173.111.15:24629
+REPORT_borzoi_grelu_infrastructure.md  L1178  213.173.110.43:16444
+REPORT_borzoi_grelu_infrastructure.md  L1178  213.173.98.95:49080
+REPORT_expression_generation_probe.md  L3  213.173.109.20:17072
+REPORT_expression_permutations.md  L3  213.173.110.98:10709
+REPORT_expression_transfer.md  L3  213.173.109.8:14747
+REPORT_ois_enhancer_run.md  L3  213.173.110.207:18045
