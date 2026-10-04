@@ -42,17 +42,21 @@ license-url: >-
 # Data, figures and audit records are CC-BY-4.0; see LICENSE-DATA.
 
 # ---------------------------------------------------------------------------
-# PLACEHOLDERS — fill these in one pass together with the README markers.
-# Zenodo only archives GitHub releases created AFTER the repository is linked
-# to Zenodo, so connect the two before tagging a release.
+# Zenodo DOI is filled in. The version/date-released fields below are still
+# placeholders: they describe a GitHub RELEASE that must not be created until
+# the repository is linked to Zenodo, or the release will not be archived.
+# The preferred-citation block stays pending until the preprint is posted.
+# Note: 10.5281/zenodo.23146107 is the VERSION DOI, which always resolves to
+# this exact deposit. The concept DOI 10.5281/zenodo.23146106 resolves to the
+# newest version instead; swap it in here if you prefer that behaviour.
 # ---------------------------------------------------------------------------
 version: 0.0.0-pre-release
 date-released: 2026-01-01
-doi: 10.5281/zenodo.0000000
+doi: 10.5281/zenodo.23146107
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.0000000
-    description: Zenodo deposition of the large artifacts (DOI pending)
+    value: 10.5281/zenodo.23146107
+    description: Zenodo deposition of the large artifacts
 preferred-citation:
   type: article
   title: >-

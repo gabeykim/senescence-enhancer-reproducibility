@@ -6,8 +6,8 @@ where it is — how far a sequence-to-activity model can be pushed toward
 designing one.
 
 - **Manuscript:** _(link to be added on preprint posting)_
-- **Large artifacts (Zenodo):** _(DOI to be added on deposition — see
-  [What is not here](#what-is-not-here))_
+- **Large artifacts (Zenodo):** [10.5281/zenodo.23146107](https://doi.org/10.5281/zenodo.23146107) — see
+  [What is not here](#what-is-not-here)
 - **Licences:** [MIT](LICENSE) for everything under `scripts/` and `env/`;
   [CC-BY 4.0](LICENSE-DATA) for `results/`, `figures/`, `audit/`,
   `audit_fixes/` and `reports/`.
@@ -118,11 +118,17 @@ directory and the adjacent accession GSE254357 return 200.
 
 | Excluded | Why | Where to get it |
 |---|---|---|
-| `region_fwd.npy`, `region_rc.npy` (**818 MB each**) | Borzoi trunk embedding caches. Far over GitHub's 100 MB hard limit. | Zenodo _(DOI pending)_, or regenerate with `scripts/81_ois_cache.py` (~1.16 h on one 24 GB GPU) |
-| `cache_fwd.npy`, `cache_rc.npy` (97 MB each) | Expression-phase trunk caches | Zenodo _(DOI pending)_ |
-| `signal_matrix*.csv`, `region_responses*.csv`, `anchors*.csv` (28–66 MB) | Large intermediate matrices, fully re-derivable | Zenodo _(DOI pending)_, or rerun steps 51/61/70 |
+| `region_fwd.npy`, `region_rc.npy` (**818 MB each**) | Borzoi trunk embedding caches. Far over GitHub's 100 MB hard limit. | [Zenodo](https://doi.org/10.5281/zenodo.23146107), or regenerate with `scripts/81_ois_cache.py` (~1.16 h on one 24 GB GPU) |
+| `cache_fwd.npy`, `cache_rc.npy` (97 MB each) | Expression-phase trunk caches | [Zenodo](https://doi.org/10.5281/zenodo.23146107) |
+| `signal_matrix*.csv`, `region_responses*.csv`, `anchors*.csv` (28–66 MB) | Large intermediate matrices, fully re-derivable | [Zenodo](https://doi.org/10.5281/zenodo.23146107), or rerun steps 51/61/70 |
 | Raw GEO/ENCODE data (9.4 GB) | Public and re-fetchable; redistribution adds nothing | `scripts/01, 10, 20, 22, 40, 50, 60` fetch it |
-| `*.h5ad` training sets (14 MB) | Re-derivable from the fetch + build scripts | Zenodo _(DOI pending)_, or rerun steps 43/71 |
+| `*.h5ad` training sets (14 MB) | Re-derivable from the fetch + build scripts | [Zenodo](https://doi.org/10.5281/zenodo.23146107), or rerun steps 43/71 |
+
+The Zenodo record holds **24 files, 2.35 GB**, with a SHA-256 manifest and its
+own README describing what each file is, which figure it supports, and what it
+cannot be used for. `10.5281/zenodo.23146107` is the version DOI and always
+resolves to that exact deposit; the concept DOI `10.5281/zenodo.23146106`
+resolves to the newest version instead.
 
 **Git LFS is deliberately not used.** Its quota and bandwidth limits break
 anonymous cloning, which would defeat the point of a reproducibility
@@ -280,7 +286,8 @@ This repository carries its own audit trail, which is unusual and deliberate.
 
 ## Citing
 
-Please cite the manuscript _(link pending)_ and the Zenodo deposition
-_(DOI pending)_ for the large artifacts. The underlying GEO and ENCODE datasets
-remain under their own terms and should be cited directly; all 44 are listed in
+Please cite the manuscript _(link pending; not yet posted)_ and the Zenodo
+deposition [10.5281/zenodo.23146107](https://doi.org/10.5281/zenodo.23146107)
+for the large artifacts. The underlying GEO and ENCODE datasets remain under
+their own terms and should be cited directly; all 44 are listed in
 `audit/accession_log_merged.csv`.
