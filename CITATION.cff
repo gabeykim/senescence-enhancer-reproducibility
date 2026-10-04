@@ -1,0 +1,66 @@
+cff-version: 1.2.0
+title: >-
+  Senescence enhancer reproducibility: code, derived results and
+  provenance records
+message: >-
+  If you use this repository, please cite both the preprint and the
+  Zenodo deposition of the large artifacts.
+type: software
+authors:
+  - given-names: Gabriel
+    family-names: Kim
+    affiliation: Independent researcher
+repository-code: >-
+  https://github.com/gabeykim/senescence-enhancer-reproducibility
+abstract: >-
+  Code, derived result tables, publication figures and provenance records
+  for a study of whether senescence-associated enhancer activity is
+  reproducible enough to model, and how far a sequence-to-activity model
+  can be pushed toward designing a senescence-responsive element.
+  Replicative senescence shows no reproducible H3K27ac programme: the
+  cleanest within-replicative comparison available, with no technical
+  confound, is Spearman +0.054, against a within-OIS ceiling of +0.653.
+  A head trained on Borzoi trunk embeddings reaches Spearman +0.5484 on a
+  cross-lab, cross-tissue holdout, which is 86.1 percent of the measured
+  +0.637 reproducibility ceiling. Motif insertion saturates at 0.773 times
+  the change required to move a sequence from the median to the 95th
+  percentile of predicted activity. Every H3K27ac dataset used has at most
+  two replicates per arm, which bounds every result reported.
+keywords:
+  - senescence
+  - enhancer
+  - reproducibility
+  - genomics
+  - chromatin
+  - deep-learning
+  - cis-regulatory-elements
+  - H3K27ac
+  - oncogene-induced senescence
+license: MIT
+license-url: >-
+  https://github.com/gabeykim/senescence-enhancer-reproducibility/blob/main/LICENSE
+# Data, figures and audit records are CC-BY-4.0; see LICENSE-DATA.
+
+# ---------------------------------------------------------------------------
+# PLACEHOLDERS — fill these in one pass together with the README markers.
+# Zenodo only archives GitHub releases created AFTER the repository is linked
+# to Zenodo, so connect the two before tagging a release.
+# ---------------------------------------------------------------------------
+version: 0.0.0-pre-release
+date-released: 2026-01-01
+doi: 10.5281/zenodo.0000000
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.0000000
+    description: Zenodo deposition of the large artifacts (DOI pending)
+preferred-citation:
+  type: article
+  title: >-
+    PREPRINT TITLE PENDING
+  authors:
+    - given-names: Gabriel
+      family-names: Kim
+      affiliation: Independent researcher
+  year: 2026
+  doi: 10.0000/preprint.pending
+  url: https://example.org/preprint-link-pending
