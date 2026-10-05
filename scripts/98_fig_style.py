@@ -62,24 +62,24 @@ def apply_style():
         "savefig.pad_inches": 0.02,
         "font.family": "sans-serif",
         "font.sans-serif": ["Helvetica", "Arial", "DejaVu Sans"],
-        "font.size": 7, "axes.titlesize": 8, "axes.labelsize": 7,
-        "xtick.labelsize": 7, "ytick.labelsize": 7, "legend.fontsize": 7,
+        "font.size": 9, "axes.titlesize": 10, "axes.labelsize": 9,
+        "xtick.labelsize": 9, "ytick.labelsize": 9, "legend.fontsize": 9,
         "axes.edgecolor": INK2, "axes.labelcolor": INK, "text.color": INK,
         "xtick.color": INK2, "ytick.color": INK2,
-        "axes.linewidth": 0.6, "xtick.major.width": 0.6, "ytick.major.width": 0.6,
-        "xtick.major.size": 2.5, "ytick.major.size": 2.5,
+        "axes.linewidth": 0.8, "xtick.major.width": 0.8, "ytick.major.width": 0.8,
+        "xtick.major.size": 3.2, "ytick.major.size": 3.2,
         "axes.spines.top": False, "axes.spines.right": False,
         "grid.color": GRID, "grid.linewidth": 0.5,
         "legend.frameon": False, "legend.handlelength": 1.4,
         "legend.borderpad": 0.2, "legend.labelspacing": 0.3,
-        "lines.linewidth": 1.2, "lines.markersize": 4,
+        "lines.linewidth": 1.6, "lines.markersize": 5,
         "pdf.fonttype": 42, "ps.fonttype": 42,   # embed TrueType, keep text editable
         "figure.dpi": 300,
     })
 
 
 def panel_tag(ax, letter, dx=-0.085, dy=1.045):
-    ax.text(dx, dy, letter, transform=ax.transAxes, fontsize=9,
+    ax.text(dx, dy, letter, transform=ax.transAxes, fontsize=11,
             fontweight="bold", va="top", ha="left", color=INK)
 
 

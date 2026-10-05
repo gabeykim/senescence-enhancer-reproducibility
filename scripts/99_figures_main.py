@@ -78,8 +78,8 @@ def fig1():
     meas = meas.reset_index(drop=True)
     col = {"OIS": C_OIS, "replicative": C_REP, "irradiation": C_IR}
 
-    fig, ax = plt.subplots(figsize=(SINGLE, 3.15))
-    fig.subplots_adjust(left=0.265, right=0.97, top=0.885, bottom=0.345)
+    fig, ax = plt.subplots(figsize=(FULL, 4.0))
+    fig.subplots_adjust(left=0.165, right=0.985, top=0.90, bottom=0.255)
     y = np.arange(len(meas))[::-1].astype(float)
     h = 0.34
 
@@ -92,12 +92,12 @@ def fig1():
         ax.barh(yi - h / 2, r.n_control, height=h, color="white", edgecolor=c,
                 linewidth=0.8, hatch="////", zorder=2)
         if r.assay != "H3K27ac":
-            ax.text(4.55, yi, r.assay, fontsize=7, va="center", ha="left", color=INK2)
+            ax.text(4.55, yi, r.assay, fontsize=9, va="center", ha="left", color=INK2)
         if str(r.independent_control).startswith("no"):
-            ax.text(5.42, yi, "\u2020", fontsize=7, va="center", ha="left", color=RED)
+            ax.text(5.42, yi, "\u2020", fontsize=9, va="center", ha="left", color=RED)
 
     ax.set_yticks(y)
-    ax.set_yticklabels([SHORT[a] for a in meas.arm_label], fontsize=7)
+    ax.set_yticklabels([SHORT[a] for a in meas.arm_label], fontsize=9)
     for t, m in zip(ax.get_yticklabels(), meas.mechanism):
         t.set_color(col[m])
     ax.set_xlim(0, 5.6)
@@ -105,8 +105,8 @@ def fig1():
     ax.set_xticks([0, 1, 2, 3, 4])
     ax.set_xlabel("replicates per arm")
     ax.set_title("Senescence chromatin datasets:\nevery H3K27ac arm is n $\\leq$ 2",
-                 loc="left", fontsize=8)
-    ax.text(2.12, len(meas) - 0.45, "n = 2 ceiling", color=RED, fontsize=7,
+                 loc="left", fontsize=10)
+    ax.text(2.12, len(meas) - 0.45, "n = 2 ceiling", color=RED, fontsize=9,
             va="top", ha="left")
     ax.grid(axis="x", zorder=0)
     ax.set_axisbelow(True)
@@ -116,13 +116,10 @@ def fig1():
     handles += [Patch(facecolor=INK2, label="senescent arm"),
                 Patch(facecolor="white", edgecolor=INK2, hatch="////",
                       label="control arm")]
-    ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.45, -0.205),
-              ncol=3, fontsize=7, columnspacing=0.9, handlelength=1.0)
-    fig.text(0.015, 0.075, "\u2020 control arm shared between two contrasts "
-                           "(GSE106146 proliferating)", fontsize=7, color=RED)
-    fig.text(0.015, 0.012, "Unlabelled rows are H3K27ac. WI-38 repl. ATAC (GSE175533) is\n"
-                           "a deposited log2FC with no replicate-level data; not plotted.",
-            fontsize=7, color=MUTED)
+    handles += [Line2D([], [], color=RED, marker=r"$\dagger$", ls="", ms=9,
+                       label="shared control arm")]
+    ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.45, -0.175),
+              ncol=3, fontsize=9, columnspacing=1.1, handlelength=1.0)
     return save(fig, "figure1_data_landscape")
 
 
@@ -155,7 +152,7 @@ def fig2():
     cross = [float(rr["spearman"]) for g, _, rr, _ in rows if g == "cross-mechanism"]
     lo, hi = min(cross), max(cross)
 
-    fig, ax = plt.subplots(figsize=(FULL, 4.6))
+    fig, ax = plt.subplots(figsize=(FULL, 5.4))
     gcol = {"within-OIS": C_OIS, "within-replicative": C_REP,
             "cross-mechanism": C_CROSS}
     y, labels, tickcol = [], [], []
@@ -181,38 +178,29 @@ def fig2():
         else:
             ax.plot(x, yi, "o", ms=5.5, mfc=c, mec=c, zorder=4)
         # keep n labels off the ceiling line: flip to the left for the far-right points
+        off = 0.030 if star else 0.016
         if x > 0.55:
-            ax.text(x - 0.016, yi, f"n = {n:,}", fontsize=7, ha="right",
+            ax.text(x - off, yi, f"n = {n:,}", fontsize=9, ha="right",
                     va="center", color=INK2)
         else:
-            ax.text(x + 0.016, yi, f"n = {n:,}", fontsize=7, ha="left",
+            ax.text(x + off, yi, f"n = {n:,}", fontsize=9, ha="left",
                     va="center", color=INK2)
 
     ax.set_yticks(y)
-    ax.set_yticklabels(labels, fontsize=7)
+    ax.set_yticklabels(labels, fontsize=9)
     for t, c in zip(ax.get_yticklabels(), tickcol):
         t.set_color(c)
     ax.invert_yaxis()
-    ax.set_xlabel("Spearman $\\rho$ of the per-region senescence response "
-                  "(primary threshold |log2FC| $\\geq$ 0.5)")
+    ax.set_xlabel("Spearman $\\rho$  (|log2FC| $\\geq$ 0.5)")
     ax.set_xlim(-0.30, 0.90)
     ax.grid(axis="x"); ax.set_axisbelow(True)
 
-    ax.text(CEIL, -1.25, f"within-OIS ceiling  $\\rho$ = {CEIL:+.3f}",
-            color=C_OIS, fontsize=7, ha="center")
+    ax.text(CEIL - 0.015, -1.25, f"within-OIS ceiling  $\\rho$ = {CEIL:+.3f}",
+            color=C_OIS, fontsize=9, ha="right")
     ax.text((lo + hi) / 2, -1.25, f"cross-mechanism span\n{lo:+.3f} to {hi:+.3f}",
-            fontsize=7, ha="center", va="center", color=INK2)
-    ax.annotate("no technical confound:\nsame lab, pipeline, build",
-                xy=(float(r.loc["R2", "spearman"]), y[6]),
-                xytext=(0.40, y[6] + 1.15), fontsize=7, color=INK,
-                arrowprops=dict(arrowstyle="-", lw=0.7, color=INK2,
-                                shrinkA=0, shrinkB=3,
-                                connectionstyle="angle,angleA=0,angleB=90,rad=0"))
-
-    ax.set_title("Within-OIS agreement reaches $\\rho$ = +0.653; no within-replicative "
-                 "comparison exceeds +0.27\nR1 and R2 fall inside the cross-mechanism "
-                 "span (shaded); R3 sits just above it",
-                 loc="left", fontsize=7.5)
+            fontsize=9, ha="center", va="center", color=INK2)
+    ax.set_title("Reproducibility of the per-region senescence response",
+                 loc="left", fontsize=10)
     ax.set_ylim(ymax + 1.0, -2.1)
     fig.tight_layout()
 
@@ -238,7 +226,7 @@ def fig3():
               ("R3  BJ vs GSE106146", rep[rep.comparison == "R3"], ORANGE, "^"),
               ("R1  IMR90 vs GSE106146", rep[rep.comparison == "R1"], ORANGE, "s"),
               ("R2  IMR90 vs BJ", rep[rep.comparison == "R2"], ORANGE, "D")]
-    fig, ax = plt.subplots(figsize=(SINGLE, 3.2))
+    fig, ax = plt.subplots(figsize=(FULL, 4.0))
     for lab, g, c, mk in series:
         g = g.sort_values("threshold")
         ls = "-" if "OIS" in lab else "--"
@@ -246,19 +234,16 @@ def fig3():
                 label=lab)
         last = g.iloc[-1]
         ax.annotate(f"{last.spearman:+.3f}", (last.threshold, last.spearman),
-                    textcoords="offset points", xytext=(4, -1), fontsize=7, color=c)
-        first = g.iloc[0]
-        ax.annotate(f"{first.spearman:+.3f}", (first.threshold, first.spearman),
-                    textcoords="offset points", xytext=(-4, -7), fontsize=7,
-                    color=c, ha="center")
+                    textcoords="offset points", xytext=(4, -1), fontsize=9, color=c)
     ax.axhline(0, color=INK2, lw=0.6)
     ax.set_xlabel("response-magnitude threshold  |log2FC| $\\geq$")
     ax.set_ylabel("Spearman $\\rho$")
     ax.set_xticks([0.0, 0.25, 0.5, 1.0])
-    ax.set_xlim(-0.06, 1.16)
+    ax.set_xlim(-0.06, 1.20)
     ax.set_title("OIS agreement is threshold-independent;\nreplicative agreement is not",
-                 loc="left", fontsize=7.5)
-    ax.legend(loc="upper left", fontsize=7)
+                 loc="left", fontsize=10)
+    ax.legend(loc="upper left", bbox_to_anchor=(0.012, 0.86), fontsize=9,
+          framealpha=1.0, edgecolor="none")
     ax.grid(axis="y"); ax.set_axisbelow(True)
     fig.tight_layout()
     return save(fig, "figure3_threshold_sensitivity")
@@ -278,7 +263,7 @@ def fig4():
             ("IMR90_OIS_k27ac_prior", "IMR-90 OIS", "OIS")]
     col = {"OIS": C_OIS, "replicative": C_REP, "irradiation": C_IR}
     x = np.arange(len(cols)); w = 0.38
-    fig, ax = plt.subplots(figsize=(SINGLE, 3.3))
+    fig, ax = plt.subplots(figsize=(FULL, 4.2))
     for i, (c, lab, mech) in enumerate(cols):
         p = float(L.loc["promoter", f"{c}_mean"])
         d = float(L.loc["distal", f"{c}_mean"])
@@ -287,18 +272,18 @@ def fig4():
                linewidth=0.9, hatch="////")
     ax.axhline(0, color=INK, lw=0.8)
     ax.set_xticks(x)
-    ax.set_xticklabels([l for _, l, _ in cols], fontsize=7, rotation=38,
+    ax.set_xticklabels([l for _, l, _ in cols], fontsize=9, rotation=38,
                        ha="right")
     for t, (_, _, m) in zip(ax.get_xticklabels(), cols):
         t.set_color(col[m])
     ax.set_ylabel("mean H3K27ac log2FC at CDKN2A")
     ax.set_title("CDKN2A promoter falls in every dataset;\ndistal rises only in the "
-                 "2v2 OIS datasets", loc="left", fontsize=7.5)
+                 "2v2 OIS datasets", loc="left", fontsize=10)
     np_, nd = int(L.loc["promoter", "n"]), int(L.loc["distal", "n"])
     ax.legend(handles=[Patch(facecolor=INK2, label=f"promoter (n = {np_} regions)"),
                        Patch(facecolor="white", edgecolor=INK2, hatch="////",
                              label=f"distal (n = {nd} regions)")],
-              loc="lower left", fontsize=7)
+              loc="lower left", fontsize=9)
     ax.grid(axis="y"); ax.set_axisbelow(True)
     fig.tight_layout()
     return save(fig, "figure4_cdkn2a_promoter_distal")
@@ -323,7 +308,7 @@ def fig5():
 
     er = tr["eval_rest"]["IMR90_SEN_vs_PRO"]
     CEIL = tr["reproducibility_ceiling"]
-    fig, axes = plt.subplots(1, 4, figsize=(FULL, 3.0))
+    fig, axes = plt.subplots(1, 4, figsize=(FULL * 0.935, 3.6))
 
     # --- A: predicted vs measured -------------------------------------------
     a = axes[0]
@@ -331,40 +316,36 @@ def fig5():
     hb = a.hexbin(meas[ok], pred[ok], gridsize=46, bins="log", cmap="Blues",
                   mincnt=1, linewidths=0)
     a.axhline(0, color=INK2, lw=0.5); a.axvline(0, color=INK2, lw=0.5)
-    a.set_xlabel("measured IMR90 log2FC")
+    a.set_xlabel("measured log2FC")
     a.set_ylabel("predicted response")
-    a.set_title("Held-out IMR90", loc="left", fontsize=7.5)
-    a.text(.03, .97, f"$\\rho$ = {er['spearman']:+.4f}\nn = {int(ok.sum()):,}\n"
-                     f"{er['frac_of_ceiling']*100:.1f}% of ceiling",
-           transform=a.transAxes, fontsize=7, va="top", color=INK)
+    a.set_title("Held-out IMR90", loc="left", fontsize=10)
+    a.text(.05, .96, f"$\\rho$ = {er['spearman']:+.4f}\nn = {int(ok.sum()):,}",
+           transform=a.transAxes, fontsize=9, va="top", color=INK)
     cb = fig.colorbar(hb, ax=a, pad=0.02, fraction=0.045)
-    cb.set_label("regions (log)", fontsize=7); cb.ax.tick_params(labelsize=5.4)
+    cb.set_label("regions (log)", fontsize=9); cb.ax.tick_params(labelsize=9)
     cb.outline.set_linewidth(0.4)
     panel_tag(a, "A")
 
     # --- B: permutation null -------------------------------------------------
     b = axes[1]
     perms = np.array(tr["control1_shuffled_labels"]["all_spearman"])
+    N_PERM = len(perms)
     real = tr["control1_shuffled_labels"]["spearman"]["real"]
     b.hist(perms, bins=16, color=GREY, edgecolor="white", linewidth=0.5)
     b.axvline(real, color=RED, lw=1.4)
-    b.annotate(f"real\n{real:+.4f}", xy=(real, b.get_ylim()[1] * 0.62),
-               xytext=(-30, 0), textcoords="offset points", fontsize=7,
-               color=RED, ha="right",
-               arrowprops=dict(arrowstyle="->", lw=0.8, color=RED))
+    b.text(real - 0.012, b.get_ylim()[1] * 0.78, "real $\\rho$", fontsize=9,
+           color=RED, ha="right", va="top")
     b.set_xlabel("Spearman $\\rho$, shuffled labels")
     b.set_ylabel("permutations")
-    b.set_title("Shuffled-label null", loc="left", fontsize=7.5)
+    b.set_title("Shuffled-label null", loc="left", fontsize=10)
     aucb = tr["control1_shuffled_labels"]["auc"]
-    b.text(.03, .97, "0 / 200 beat real\n$p$ = 0.00498\n(= 1/201 floor)",
-           transform=b.transAxes, fontsize=7, va="top", color=INK)
-    b.text(.5, -0.30, f"AUC null {aucb['mean']:.3f} $\\pm$ {aucb['sd']:.3f} SD, 0/200",
-           transform=b.transAxes, fontsize=7, ha="center", color=MUTED)
+    b.text(.5, -0.24, f"n = {len(perms)} permutations, $p$ = 0.00498",
+           transform=b.transAxes, fontsize=9, ha="center", color=MUTED)
     panel_tag(b, "B")
 
     # --- C: controls ---------------------------------------------------------
     c = axes[2]
-    names = ["trained", "untrained", "shuf. embed."]
+    names = ["trained", "untrained", "shuffled"]
     sp = [er["spearman"], tr["control2_untrained"]["spearman"],
           tr["control3_shuffled_embeddings"]["spearman"]]
     au = [er["auc"], tr["control2_untrained"]["auc"],
@@ -375,23 +356,20 @@ def fig5():
           linewidth=0.9, label="AUC")
     c.axhline(0, color=INK, lw=0.8)
     c.axhline(0.5, color=MUTED, lw=0.6, ls=":")
-    for xi, (s, u) in enumerate(zip(sp, au)):
-        c.text(xi - w / 2, s + (.025 if s >= 0 else -.025), f"{s:+.3f}", fontsize=7,
-               ha="center", va="bottom" if s >= 0 else "top", color=INK2)
-        c.text(xi + w / 2, u + .025, f"{u:.3f}", fontsize=7, ha="center",
-               va="bottom", color=INK2)
-    c.set_xticks(xx); c.set_xticklabels(names, fontsize=7, rotation=16, ha="right")
+    c.set_xticks(xx); c.set_xticklabels(names, fontsize=9, rotation=38, ha="right")
     c.set_ylabel("value")
     c.set_ylim(-0.32, 1.62)
     c.set_xlim(-0.65, 2.65)
-    c.set_title("Controls", loc="left", fontsize=7.5)
+    c.set_title("Controls", loc="left", fontsize=10)
     c.legend(handles=[Patch(facecolor=C_OIS, label="Spearman $\\rho$"),
                       Patch(facecolor="white", edgecolor=C_OIS, hatch="////",
-                            label="AUC")],
-             loc="upper left", fontsize=7, ncol=1, handlelength=1.0)
-    c.text(-0.58, 0.52, "chance", fontsize=7, color=MUTED, ha="left", va="bottom")
-    c.text(.5, -0.40, f"n = {er['n_evaluable']:,} evaluable",
-           transform=c.transAxes, fontsize=7, color=INK2, ha="center")
+                            label="AUC"),
+                      Line2D([], [], color=MUTED, ls=":", lw=0.9,
+                             label="chance AUC")],
+             loc="upper left", fontsize=9, ncol=1, handlelength=1.3,
+             framealpha=1.0, edgecolor="none")
+    c.text(.5, -0.34, f"n = {er['n_evaluable']:,} evaluable",
+           transform=c.transAxes, fontsize=9, color=INK2, ha="center")
     c.grid(axis="y"); c.set_axisbelow(True)
     panel_tag(c, "C")
 
@@ -405,10 +383,11 @@ def fig5():
     d.plot([0, 1], [0, 1], ls=":", color=MUTED, lw=0.8)
     d.plot(fpr, tpr, color=C_OIS, lw=1.5)
     d.set_xlabel("false positive rate"); d.set_ylabel("true positive rate")
-    d.set_title("ROC, held-out IMR90", loc="left", fontsize=7.5)
-    d.text(.96, .06, f"AUC = {auc:.4f}\nn = {int(ev.sum()):,} evaluable\n"
-                     f"of {len(meas):,}",
-           transform=d.transAxes, fontsize=7, ha="right", va="bottom", color=INK)
+    d.set_title("ROC, held-out IMR90", loc="left", fontsize=10)
+    d.text(0.56, 0.50, "chance", fontsize=9, color=MUTED, rotation=45,
+           rotation_mode="anchor", ha="left", va="top")
+    d.text(.5, -0.24, f"AUC = {auc:.4f}, n = {int(ev.sum()):,}",
+           transform=d.transAxes, fontsize=9, ha="center", va="top", color=INK)
     d.set_xlim(0, 1); d.set_ylim(0, 1.02)
     d.grid(); d.set_axisbelow(True)
     panel_tag(d, "D")
@@ -430,7 +409,7 @@ def fig6():
     ps = pd.read_csv(ROOT / "output/audit_fixes/additivity_contrast_per_seed.csv")
     REQ = json.load(open(G / "gate1_results.json"))["required_delta"]
 
-    fig, axes = plt.subplots(1, 3, figsize=(FULL, 3.15))
+    fig, axes = plt.subplots(1, 3, figsize=(FULL * 1.02, 4.5))
 
     # --- A dose response -----------------------------------------------------
     a = axes[0]
@@ -447,22 +426,20 @@ def fig6():
                    color=pal[cond], ms=3.6, lw=1.1, capsize=1.6, elinewidth=0.7,
                    label=lab)
     a.axhline(REQ, color=RED, lw=1.1, ls="--")
-    a.text(5.2, REQ + .016, f"required  +{REQ:.3f}", color=RED, fontsize=7,
+    a.text(5.2, REQ + .016, f"required  +{REQ:.3f}", color=RED, fontsize=9,
            ha="left")
     ets = dc[dc.condition == "ETS1"].sort_values("K_total")
-    a.text(6.45, float(ets.adjusted_delta.iloc[0]) + .022, "ETS peaks at K = 6",
-           fontsize=7, color=ORANGE, ha="left", va="bottom")
+    a.text(6.25, 0.14, "ETS peaks at K = 6", fontsize=9, color=ORANGE,
+           ha="left", va="center")
     a.set_xlabel("total motif copies in the 200 bp cassette")
     a.set_ylabel("adjusted $\\Delta$ (real − scrambled)")
     a.set_xticks([6, 12, 18, 20]); a.set_xlim(5, 21.5)
     a.set_ylim(0.04, 1.20)
-    a.set_title("Dose ceiling: peak at K = 12, decline after",
-                loc="left", fontsize=7.5)
-    a.legend(loc="upper center", bbox_to_anchor=(0.5, -0.20), fontsize=7,
-             ncol=2, columnspacing=0.7, handletextpad=0.4)
+    a.set_title("Dose ceiling", loc="left", fontsize=10)
+    handles_a, labels_a = a.get_legend_handles_labels()
     a.grid(axis="y"); a.set_axisbelow(True)
-    a.text(.985, .03, "mean $\\pm$ SEM, n = 10", transform=a.transAxes,
-           fontsize=7, ha="right", va="bottom", color=INK2)
+    a.text(.985, .975, "mean $\\pm$ SEM, n = 10", transform=a.transAxes,
+           fontsize=9, ha="right", va="top", color=INK2)
     panel_tag(a, "A")
 
     # --- B spacing -----------------------------------------------------------
@@ -472,17 +449,19 @@ def fig6():
         c = BLUE if r.p < 0.05 else GREY
         b.plot([0, 1], [r.interleaved_adj, r.clustered_adj], "-", color=c, lw=1.0,
                marker="o", ms=3.4, alpha=.95 if r.p < 0.05 else .6)
-    b.set_xticks([0, 1]); b.set_xticklabels(["interleaved", "clustered"], fontsize=7)
+    b.set_xticks([0, 1]); b.set_xticklabels(["interleaved", "clustered"], fontsize=9)
     b.set_xlim(-0.26, 1.34)
     b.set_ylabel("adjusted $\\Delta$")
-    b.set_title("Clustered beats interleaved, 8/8", loc="left", fontsize=7.5)
-    b.text(.985, .035, "n = 8 pairs, each on\n10 backgrounds",
-           transform=b.transAxes, fontsize=7, ha="right", va="bottom", color=INK2)
+    b.set_title("Arrangement", loc="left", fontsize=10)
+    b.text(.985, .035, "n = 8 pairs", transform=b.transAxes,
+           fontsize=9, ha="right", va="bottom", color=INK2)
+    _lo, _hi = b.get_ylim()
+    b.set_ylim(_lo, _hi + (_hi - _lo) * 0.17)
     b.legend(handles=[Line2D([], [], color=BLUE, marker="o", ms=3.4,
                              label="paired $p$ < 0.05 (3/8)"),
                       Line2D([], [], color=GREY, marker="o", ms=3.4,
                              label="n.s. (5/8)")],
-             loc="upper left", fontsize=7)
+             loc="upper left", fontsize=9, framealpha=1.0, edgecolor="none")
     b.grid(axis="y"); b.set_axisbelow(True)
     panel_tag(b, "B")
 
@@ -500,19 +479,20 @@ def fig6():
     ci = stats.t.interval(0.95, len(d) - 1, loc=d.mean(), scale=stats.sem(d))
     c.set_xticks([0, 1])
     c.set_xticklabels(["NF-κB alone\nK = 12", "NF-κB+ETS\nK = 12 clust."],
-                      fontsize=7)
+                      fontsize=9)
     c.set_xlim(-0.3, 1.45)
     c.set_ylabel("adjusted $\\Delta$")
-    c.set_title("Combining does not beat the best single", loc="left", fontsize=7.5)
+    c.set_title("Pair vs best single", loc="left", fontsize=10)
     c.text(.985, .035,
-           f"difference {d.mean():+.4f}\n95% CI [{ci[0]:+.3f}, {ci[1]:+.3f}]\n"
-           f"$p$ = {stats.ttest_rel(ps[pcol], ps[scol]).pvalue:.3f}, n = 10",
-           transform=c.transAxes, fontsize=7, ha="right", va="bottom", color=INK,
+           f"difference {d.mean():+.4f}\nn = 10 backgrounds",
+           transform=c.transAxes, fontsize=9, ha="right", va="bottom", color=INK,
            bbox=dict(facecolor="white", edgecolor="none", alpha=0.85, pad=1.5))
     c.grid(axis="y"); c.set_axisbelow(True)
     panel_tag(c, "C")
 
-    fig.tight_layout(w_pad=1.8)
+    fig.tight_layout(w_pad=1.8, rect=(0, 0.10, 1, 1))
+    fig.legend(handles_a, labels_a, loc="lower center", ncol=5, fontsize=9,
+               columnspacing=1.2, handletextpad=0.5, bbox_to_anchor=(0.5, -0.01))
     return save(fig, "figure6_design_ceiling")
 
 
@@ -524,7 +504,7 @@ def fig7():
     ap1 = json.load(open(G / "gate2_ap1_results.json"))["H1b_interaction"]
     freq = pd.read_csv(G / "gate2_h3_frequency_by_decile.csv")
 
-    fig, axes = plt.subplots(1, 3, figsize=(FULL, 3.25))
+    fig, axes = plt.subplots(1, 3, figsize=(FULL * 0.985, 4.0))
 
     # --- A insertion ---------------------------------------------------------
     a = axes[0]
@@ -535,24 +515,22 @@ def fig7():
         a.bar(i + w / 2, summ[f"{m}_scrambled"]["delta"], w, color="white",
               edgecolor=MOTIF_COLOUR[m], hatch="////", linewidth=0.9)
     a.axhline(0, color=INK, lw=0.8)
-    for i, m in enumerate(order):
-        v = summ[f"{m}_real"]["delta"]
-        a.text(i - w / 2, v + (.025 if v >= 0 else -.025), f"{v:+.3f}", fontsize=7,
-               ha="center", va="bottom" if v >= 0 else "top", color=INK2)
-    a.set_xticks(x); a.set_xticklabels([MOTIF_LABEL[m] for m in order], fontsize=7)
+    a.set_xticks(x)
+    a.set_xticklabels([MOTIF_LABEL[m] for m in order], fontsize=9,
+                      rotation=22, ha="right")
     for t, m in zip(a.get_xticklabels(), order):
         t.set_color(MOTIF_COLOUR[m])
     a.set_ylabel("$\\Delta$ predicted response, k = 0 to 8 copies")
-    a.set_title("INSERTION into random background", loc="left", fontsize=7.5)
+    a.set_title("Insertion", loc="left", fontsize=10)
     a.legend(handles=[Patch(facecolor=INK2, label="real motif"),
                       Patch(facecolor="white", edgecolor=INK2, hatch="////",
                             label="scrambled control")],
-             loc="lower left", fontsize=7)
+             loc="lower left", fontsize=9)
     a.text(.985, .97, "n = 5 backgrounds", transform=a.transAxes,
-           fontsize=7, ha="right", va="top", color=INK2)
+           fontsize=9, ha="right", va="top", color=INK2)
     a.set_ylim(-0.60, 0.80)
     a.annotate("AP-1 goes DOWN", xy=(3 - w / 2, summ["AP1_FOSJUN_real"]["delta"] * 0.55),
-               xytext=(2.30, -0.16), fontsize=7, color=ORANGE, fontweight="bold",
+               xytext=(2.30, -0.16), fontsize=9, color=ORANGE, fontweight="bold",
                ha="right",
                arrowprops=dict(arrowstyle="->", lw=0.8, color=ORANGE))
     a.grid(axis="y"); a.set_axisbelow(True)
@@ -572,25 +550,19 @@ def fig7():
     hi_t = max(v + e for v, e in zip(vals, errs))
     lo_t = min(v - e for v, e in zip(vals, errs))
     pad = (hi_t - lo_t) * 0.08
-    b.set_ylim(lo_t - 3.8 * pad, hi_t + 5.6 * pad)
-    for xi, (v, e, (lab, s, _)) in enumerate(zip(vals, errs, bars)):
-        yy = (v + e + pad * .5) if v >= 0 else (v - e - pad * .5)
-        pv = s["p"]
-        ptxt = "$p$ < 0.001" if pv < 0.001 else f"$p$ = {pv:.3f}"
-        b.text(xi, yy, f"{v:+.4f}\n{ptxt}", fontsize=7, ha="center",
-               va="bottom" if v >= 0 else "top", color=INK2)
+    b.set_ylim(lo_t - 1.6 * pad, hi_t + 5.2 * pad)
     br = hi_t + 3.4 * pad
     b.plot([0, 0, 1, 1], [br - pad * .4, br, br, br - pad * .4], color=RED, lw=0.9)
-    b.text(0.5, br + pad * .3, f"interaction $p$ = "
+    b.text(1.0, br + pad * .35, f"interaction $p$ = "
            f"{ap1['AP1_FOSJUN']['interaction']['welch_p']:.4f}",
-           ha="center", fontsize=7, color=RED)
-    b.set_xticks(xx); b.set_xticklabels([l for l, *_ in bars], fontsize=7)
-    b.text(0.5, -0.19, "response stratum of the host region", transform=b.transAxes,
-           fontsize=7, ha="center", color=INK2)
+           ha="center", fontsize=9, color=RED)
+    b.set_xticks(xx); b.set_xticklabels([l for l, *_ in bars], fontsize=9)
+    b.text(0.5, -0.17, "host-region response stratum", transform=b.transAxes,
+           fontsize=9, ha="center", color=INK2)
     b.set_ylabel("ablation effect\n(ablate motif − ablate motif-free control)")
-    b.set_title("ABLATION of native sites in real regions", loc="left", fontsize=7.5)
-    b.text(.5, -0.34, "mean $\\pm$ SEM, n = 24 regions per bar",
-           transform=b.transAxes, fontsize=7, ha="center", color=INK2)
+    b.set_title("Ablation of native sites", loc="left", fontsize=10)
+    b.text(.5, -0.30, "mean $\\pm$ SEM, n = 24 regions per bar",
+           transform=b.transAxes, fontsize=9, ha="center", color=INK2)
     b.grid(axis="y"); b.set_axisbelow(True)
     panel_tag(b, "B")
 
@@ -600,15 +572,15 @@ def fig7():
     c.plot(g.decile, g.AP1_FOSJUN, marker="s", color=ORANGE, ms=3.8, lw=1.3)
     tb = freq[(freq.response == "GM21_H3K27ac") & (freq.decile == -1)
               & (freq.motif == "AP1_FOSJUN")].iloc[0]
-    c.set_xlabel("decile of GM21 H3K27ac response")
+    c.set_xlabel("decile of H3K27ac response")
     c.set_ylabel("fraction of regions with a\nstrong AP-1 site (rel $\\geq$ 0.95)")
-    c.set_title("AP-1 sites are ENRICHED where\nH3K27ac is high", loc="left",
-                fontsize=7.5)
+    c.set_title("Genome-wide frequency", loc="left", fontsize=10)
     c.set_xticks(range(10))
-    c.text(.03, .97, f"OR = {tb.odds_ratio:.2f} top vs bottom\n"
-                     f"Fisher $p$ = {tb.p:.0e}\n"
+    _lo, _hi = c.get_ylim()
+    c.set_ylim(_lo, _hi + (_hi - _lo) * 0.26)
+    c.text(.03, .97, f"OR = {tb.odds_ratio:.2f}, top vs bottom\n"
                      f"n = {int(g.n.iloc[0]):,} per decile",
-           transform=c.transAxes, fontsize=7, va="top", color=INK)
+           transform=c.transAxes, fontsize=9, va="top", color=INK)
     c.grid(); c.set_axisbelow(True)
     panel_tag(c, "C")
 

@@ -6,34 +6,46 @@ from a summary — both are marked below and both reproduce the stored summary e
 
 **Format.** 300 dpi PNG + vector PDF (TrueType embedded, `pdf.fonttype 42`, text remains
 editable; 10 of 12 PDFs are fully vector, Figures 5 and S1 each carry one raster XObject,
-the hexbin density layer). Full width 180 mm, single column 85 mm. Sans-serif.
-**Minimum type size is 7 pt at final size** - verified: no `fontsize` below 7 anywhere in
-`figures_main.py` or `figures_supp.py`, and all rcParams tick/legend/label sizes are 7.
+the hexbin density layer). **All twelve figures are full width**, 172-179 mm as saved; none is
+laid out for a single 85 mm column. Sans-serif.
+**Minimum type size is 9 pt at final size.** Verified by reading the rendered PDFs, not the
+source: `scripts/verify_figure_typography.py` decompresses every content stream and collects
+the operand of each `/F<n> <size> Tf` text-font operator. The only sizes present are 9 pt
+(body, tick labels, legends, annotations), 10 pt (panel titles), 11 pt (panel letters) and
+6.3 pt, which is mathtext rendering a superscript or subscript at matplotlib's fixed 0.7x of
+its 9 pt base and is exempted by name in the checker. The check passes for all twelve.
 Categorical palette validated colourblind-safe with the dataviz validator against a white
 surface (3-slot: worst adjacent dE 9.2 deutan; 6-slot: 9.1 protan); every low-contrast slot
 also carries a direct label or a distinct marker.
+
+**In-panel text.** Panels carry only what is needed to read the plot: axis labels, series
+labels, reference-line labels, n per series, and any statistic that cannot be read off the
+axis (an interaction p, an odds ratio, a paired difference). Values that a reader can read
+directly from an axis are no longer printed on the bars or points; they are in the captions
+below. Four whole explanatory text blocks - under Figures S1, S2 and S3, and the per-panel
+Spearman line in S5 - were moved into these captions for the same reason.
 
 **Dispersion.** A prior audit found four figures with unlabelled SEM bars. Every error bar
 in this set is named in its own caption AND on the panel itself.
 
 | Figure | File | Width x height (mm) | Error bars |
 |---|---|---|---|
-| 1 | `figure1_data_landscape.png` | 85 x 78 | none (counts) |
-| 2 | `figure2_reproducibility_matrix.png` | 176 x 112 | none (point estimates) |
-| 3 | `figure3_threshold_sensitivity.png` | 80 x 77 | none (point estimates) |
-| 4 | `figure4_cdkn2a_promoter_distal.png` | 81 x 80 | none (means over stated regions) |
-| 5 | `figure5_model_performance.png` | 175 x 66 | none (distributions / point estimates) |
-| 6 | `figure6_design_ceiling.png` | 180 x 73 | **SEM**, n = 10 backgrounds |
-| 7 | `figure7_ap1_context_dependence.png` | 176 x 73 | **SEM**, n = 24 regions per bar (B) |
-| S1 | `figureS1_atac_vs_k27ac_concordance.png` | 169 x 75 | none |
-| S2 | `figureS2_batch_structure.png` | 167 x 67 | none |
-| S3 | `figureS3_shared_control_artifact.png` | 158 x 67 | none |
-| S4 | `figureS4_exhaustive_3v3_null.png` | 81 x 72 | none |
-| S5 | `figureS5_motif_dose_response_all.png` | 177 x 71 | **SEM**, n = 5 backgrounds |
+| 1 | `figure1_data_landscape.png` | 179 x 96 | none (counts) |
+| 2 | `figure2_reproducibility_matrix.png` | 174 x 131 | none (point estimates) |
+| 3 | `figure3_threshold_sensitivity.png` | 174 x 96 | none (point estimates) |
+| 4 | `figure4_cdkn2a_promoter_distal.png` | 174 x 101 | none (means over stated regions) |
+| 5 | `figure5_model_performance.png` | 179 x 80 | none (distributions / point estimates) |
+| 6 | `figure6_design_ceiling.png` | 178 x 111 | **SEM**, n = 10 backgrounds |
+| 7 | `figure7_ap1_context_dependence.png` | 176 x 92 | **SEM**, n = 24 regions per bar (B) |
+| S1 | `figureS1_atac_vs_k27ac_concordance.png` | 173 x 82 | none |
+| S2 | `figureS2_batch_structure.png` | 178 x 82 | none |
+| S3 | `figureS3_shared_control_artifact.png` | 174 x 86 | none |
+| S4 | `figureS4_exhaustive_3v3_null.png` | 174 x 91 | none |
+| S5 | `figureS5_motif_dose_response_all.png` | 177 x 85 | **SEM**, n = 5 backgrounds |
 
 ---
 
-## Figure 1 — Data landscape (single column)
+## Figure 1 — Data landscape (full width)
 
 **Caption.** Senescence chromatin datasets used in this study, by induction mechanism. Filled
 bars give the number of replicates in the senescent arm, hatched bars the matched non-senescent
@@ -56,7 +68,8 @@ control arm, n_replicates), `output/ois_enhancer_trainset/STEP1_LOG.txt`, and
 ## Figure 2 — The reproducibility matrix (full width) · CENTREPIECE
 
 **Caption.** Per-region Spearman correlation of the senescence response between every pair of
-datasets, at the primary response-magnitude threshold |log2FC| ≥ 0.5, grouped by whether the
+datasets, at the primary response-magnitude threshold |log2FC| ≥ 0.5 (abbreviated on the axis),
+grouped by whether the
 two datasets share an induction mechanism. Each point is one comparison; n (regions entering
 that correlation) is printed beside it. The dashed blue line marks the within-OIS ceiling,
 ρ = +0.653 (GM21 vs IMR90 H3K27ac, n = 88,530). Grey shading spans the four cross-mechanism
@@ -78,16 +91,18 @@ threshold 0.5).
 
 ---
 
-## Figure 3 — Threshold sensitivity (single column)
+## Figure 3 — Threshold sensitivity (full width)
 
 **Caption.** Spearman correlation as a function of the response-magnitude threshold applied to
 both datasets. Within-OIS agreement (solid, blue) is essentially flat across thresholds, +0.640
 at |log2FC| ≥ 0 to +0.678 at ≥ 1.0 — the agreement is a property of the data, not of the
 filter. The within-replicative comparisons (dashed, orange) behave differently: R1 climbs
 five-fold, +0.063 to +0.327, meaning its apparent agreement is manufactured by discarding
-low-magnitude regions. R2 and R3 are shown for comparison. Endpoint values are printed at each
-line end. No error bars: each point is a single correlation; n at each threshold is in the
-source table and falls as the threshold rises.
+low-magnitude regions. R2 behaves the same way (−0.043 to +0.179, a sign change); R3 is flat
+(+0.280 to +0.293) but sits far below the OIS line throughout. Only the |log2FC| ≥ 1.0 endpoint
+value is printed at each line end; the |log2FC| ≥ 0 values are the four given here. No error
+bars: each point is a single correlation; n at each threshold is in the source table and falls
+as the threshold rises.
 
 **Sources.** `output/enhancer_test/cross_mechanism_correlations.csv` (comparison b, all four
 thresholds); `output/replicative_ceiling_test/replicative_correlations.csv` (R1, R2, R3, all
@@ -95,7 +110,7 @@ four thresholds).
 
 ---
 
-## Figure 4 — CDKN2A promoter versus distal (single column)
+## Figure 4 — CDKN2A promoter versus distal (full width)
 
 **Caption.** Mean H3K27ac log2 fold change at the CDKN2A locus, split into promoter-proximal
 (filled, n = 10 anchors) and distal (hatched, n = 67 anchors) regions, for all seven dataset
@@ -122,13 +137,18 @@ n = 100,070 held-out regions. Spearman ρ = +0.5484, which is 86.1% of the +0.63
 reproducibility ceiling measured on the same regions — the ceiling, not 1.0, is the right
 reference.
 **(B)** Shuffled-label null. Histogram of the Spearman correlation under 200 label
-permutations (all 200 values stored); the real value is marked in red. 0 of 200 permutations
-reach it, giving the smallest attainable p for 200 permutations, **p = 0.00498 = 1/201**. The
+permutations (all 200 values stored); the real value is marked by the red line, labelled
+"real ρ" — it is the +0.5484 of panel A and is not reprinted on the panel. 0 of 200
+permutations reach it, giving the smallest attainable p for 200 permutations,
+**p = 0.00498 = 1/201**, printed with n beneath the panel. The
 AUC null is reported as summary statistics (mean ± SD, observed range, 0/200) because the
 per-permutation AUCs were not saved — see "Data not available" below.
 **(C)** Controls, all evaluated on the same n = 26,936 evaluable regions: the trained head
 against an untrained head and against a head fed region-to-embedding-shuffled inputs. Both
-controls collapse to chance (dotted line, AUC 0.5).
+controls collapse to chance (dotted line, "chance AUC" in the legend). Bar heights are
+Spearman ρ +0.548 / −0.090 / +0.025 and AUC 0.907 / 0.384 / 0.523 for the trained, untrained
+and shuffled-embedding heads respectively; these are read off the axis and are not printed on
+the bars.
 **(D)** ROC on the evaluable subset, n = 26,936 of 100,070 held-out regions (17,240 up,
 9,696 down); the remaining 73,134 are ambiguous at |measured log2FC| < 1.0 and are excluded by
 the pre-registered evaluation rule. AUC = 0.9070.
@@ -177,8 +197,11 @@ more of the best single family.
 **(A) INSERTION.** Change in predicted response from 0 to 8 inserted copies in random 200 bp
 background, for four transcription-factor families, each against a mononucleotide-shuffled
 control of the same motif at the same positions (hatched). NF-κB, C/EBPβ and ETS raise the
-prediction; **AP-1 lowers it** (−0.464) against a flat scrambled control (−0.016).
-n = 5 backgrounds × 7 copy numbers per arm.
+prediction (+0.665, +0.464, +0.117 respectively, against scrambled controls of +0.125, +0.068
+and −0.113); **AP-1 lowers it** (−0.464) against a flat scrambled control (−0.016). Bar heights
+are read off the axis and are not printed on the bars. n = 5 backgrounds × 7 copy numbers per
+arm. Panel titles are abbreviated on the figure ("Insertion", "Ablation of native sites",
+"Genome-wide frequency").
 **(B) ABLATION.** The same motifs removed from their native sites in real genomic regions.
 Plotted is the motif-specific effect: shuffling the matched bases minus shuffling an equally
 long motif-free stretch in the same window, so a generic "perturbing 10 bp changes the
@@ -273,10 +296,11 @@ larger partition space, were used for the reported permutation tests. No error b
 for each of the four transcription-factor families, real motif (solid, filled markers) against a
 mononucleotide-shuffled control at the same positions (dashed, open markers). Error bars are
 **SEM over n = 5 independent random backgrounds** at each copy number. Printed per panel: the
-0→8 copy delta for the real motif and for its scrambled control, and the Spearman correlation
-between copy number and predicted response. NF-κB gives the largest positive response
-(Δ +0.665, ρ = +0.846); AP-1 is the only family with a negative, monotonic dose response
-(Δ −0.464, ρ = −0.375) against an essentially flat scrambled control (−0.016).
+0→8 copy delta for the real motif and for its scrambled control. The Spearman correlation
+between copy number and predicted response is no longer printed on the panels; it is
++0.846 (NF-κB), +0.611 (C/EBPβ), +0.306 (ETS) and −0.375 (AP-1). NF-κB gives the largest
+positive response (Δ +0.665, ρ = +0.846); AP-1 is the only family with a negative, monotonic
+dose response (Δ −0.464, ρ = −0.375) against an essentially flat scrambled control (−0.016).
 
 **Sources.** `output/ois_enhancer_run/results/motif_insertion.csv` (per-sequence predictions:
 motif, variant, seed, k, pred); `output/ois_enhancer_run/results/results_probe.json`
@@ -349,4 +373,5 @@ it would require re-running the 200 permutations on a GPU, which this task exclu
 | `figures_main.py` | Figures 1–7 |
 | `figures_supp.py` | Figures S1–S5 |
 | `figure_flags.txt` | mismatches detected at figure-build time |
+| `verify_figure_typography.py` | reads the rendered PDFs and enforces the 9 pt floor |
 | `figure*.png` / `figure*.pdf` | 300 dpi raster + vector, one pair per figure |
